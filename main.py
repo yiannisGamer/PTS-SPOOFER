@@ -97,7 +97,6 @@ async def ticket(ctx):
             )
                import datetime
                import pytz  # στην αρχή του αρχείου
-
             # --- Ελληνική ώρα ---
             gr_tz = pytz.timezone("Europe/Athens")
            current_time = datetime.datetime.now(gr_tz)
