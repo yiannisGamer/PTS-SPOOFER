@@ -72,13 +72,12 @@ async def ticket(ctx):
             # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
             ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
 
-            if ticket_type == "owner":
-                prefix = "owner"
-            elif ticket_type == "general":
-               prefix = "Support"
+            if ticket_type == "🛒Buy A Product":
+                prefix = "🛒Buy A Product"
+            elif ticket_type == "📞Support":
+               prefix = "📞Support"
             else:
                 prefix = "📞Support"
-                prefix = "🛒Buy A Product"
             
             # Ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
