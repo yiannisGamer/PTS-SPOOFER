@@ -77,7 +77,7 @@ async def ticket(ctx):
             elif ticket_type == "Support":
                prefix = "Support"
             else:
-            prefix = "ticket"
+               prefix = "ticket"
 
             # Ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
