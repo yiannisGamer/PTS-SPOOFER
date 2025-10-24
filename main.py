@@ -108,8 +108,8 @@ async def ticket(ctx):
         # Footer του embed
         embed.set_footer(
             text=f"{user.name} | Σήμερα στις {time_str} άνοιξε ticket",
-            icon_url=user.display_avatar.url
-        )           
+            icon_url=user.display_avatar.url           
+            
             # κουμπί διαγραφής
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
 
