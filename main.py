@@ -73,10 +73,10 @@ async def ticket(ctx):
             ticket_type = self.values[0]  # π.χ. "🛒Buy A Product" ή "📞Support"
 
             # Ορισμός prefix ανάλογα με την επιλογή
-            if "🛒Buy A Product" in ticket_type.lower():
-                prefix = "🛒Buy A Product"
-           elif "📞Support" in ticket_type.lower():
-              prefix = "📞Support"
+            if "Buy A Product" in ticket_type.lower():
+                prefix = "Buy A Product"
+           elif "Support" in ticket_type.lower():
+              prefix = "Support"
           else:
               prefix = "ticket"
 
