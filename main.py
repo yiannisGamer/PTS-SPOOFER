@@ -73,10 +73,10 @@ async def ticket(ctx):
             ticket_type = self.values[0]  # π.χ. "owner" ή "general"
 
             # Ορισμός prefix ανάλογα με την επιλογή
-            if "owner" in ticket_type.lower():
+            if "🛒Buy A Product" in ticket_type.lower():
                 prefix = "owner"
-           elif "general" in ticket_type.lower():
-              prefix = "support"
+           elif "📞Support" in ticket_type.lower():
+              prefix = "📞Support"
           else:
               prefix = "ticket"
 
