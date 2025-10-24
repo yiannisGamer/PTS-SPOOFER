@@ -56,7 +56,7 @@ async def ticket(ctx):
         def __init__(self):
             options = [
                 discord.SelectOption(label="🛒Buy A Product", description="☝️ If you have a problem with a product, click here", value="🛒Welcome to the store, what product do you want to get?"),
-                discord.SelectOption(label="📞Support", description="Βοήθεια από Staff", value="📞Welcome to support, what problem are you having?"),
+                discord.SelectOption(label="📞Support", description="☝️ If you have a problem with a product, click here", value="📞Welcome to support, what problem are you having?"),
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
 
