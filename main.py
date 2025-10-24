@@ -73,7 +73,7 @@ async def ticket(ctx):
             ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
 
             if ticket_type == "📞Support":
-                prefix = "🛒Buy A Product"
+                prefix = "📞Support"
             elif ticket_type == "📞Support":
                prefix = "📞Support"
             else:
