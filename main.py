@@ -94,8 +94,7 @@ async def ticket(ctx):
                 title=f"🎫 Ticket — {self.values[0]}",
                 description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\n👇If you want the ticket closed, click here",
                 color=EMBED_COLOR
-            )
-            
+            )            
             import datetime
 import pytz  # στην αρχή του αρχείου
 
