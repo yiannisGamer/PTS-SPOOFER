@@ -77,7 +77,7 @@ async def ticket(ctx):
             elif ticket_type == "Support":
                prefix = "Support"
             else:
-               pefix = "🛒Buy A Product"
+               pefix =  "🛒Buy A Product"
             else:
                prefix = "📞Support"
 
