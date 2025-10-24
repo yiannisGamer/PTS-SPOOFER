@@ -110,8 +110,7 @@ time_str = current_time.strftime("%-I:%M%p")  # π.χ. 5:00AM
 embed.set_footer(
     text=f"{user.name} | Σήμερα στις {time_str} άνοιξε ticket",
     icon_url=user.display_avatar.url
-)
-           
+)           
             # κουμπί διαγραφής
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
 
