@@ -95,6 +95,7 @@ async def ticket(ctx):
                 description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\n👇If you want the ticket closed, click here",
                 color=EMBED_COLOR
             ) 
+            
             import datetime
 
            # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
