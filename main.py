@@ -95,7 +95,8 @@ async def ticket(ctx):
                 description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\n👇If you want the ticket closed, click here",
                 color=EMBED_COLOR
             )
-             import datetime
+            
+            import datetime
 import pytz  # στην αρχή του αρχείου
 
 # --- Ελληνική ώρα ---
@@ -110,6 +111,7 @@ embed.set_footer(
     text=f"{user.name} | Σήμερα στις {time_str} άνοιξε ticket",
     icon_url=user.display_avatar.url
 )
+           
             # κουμπί διαγραφής
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
 
