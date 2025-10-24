@@ -88,13 +88,6 @@ async def ticket(ctx):
           name = f"{base_name}-{i}"
           i += 1
 
-            # μοναδικό όνομα καναλιού
-            base_name = f"ticket-{user.name}".replace(" ", "-").lower()
-            name = base_name
-            i = 1
-            while discord.utils.get(guild.channels, name=name):
-                name = f"{base_name}-{i}"; i += 1
-
             # permissions
             overwrites = {
                 guild.default_role: discord.PermissionOverwrite(view_channel=False),
