@@ -69,26 +69,14 @@ async def ticket(ctx):
             if category is None:
                 category = await guild.create_category("🎫 Tickets")
 
-            # Παίρνουμε τι επέλεξε ο χρήστης
-            ticket_type = self.values[0]  # π.χ. "🛒Buy A Product" ή "📞Support"
-
-            # Ορισμός prefix ανάλογα με την επιλογή
-            if "Buy A Product" in ticket_type.lower():
-                prefix = "Buy A Product"
-           elif "Support" in ticket_type.lower():
-              prefix = "Support"
-          else:
-              prefix = "ticket"
-
-          # Δημιουργία ονόματος καναλιού
-          base_name = f"{prefix}-{user.name}".replace(" ", "-").lower()
-          name = base_name
-          i = 1
-          while discord.utils.get(guild.channels, name=name):
-          name = f"{base_name}-{i}"
-          i += 1
-
-            # permissions
+              # μοναδικό όνομα καναλιού
+              base_name = f"ticket-{user.name}".replace(" ", "-").lower()
+              name = base_name
+              i = 1
+              while discord.utils.get(guild.channels, name=name):
+                  name = f"{base_name}-{i}"; 
+            
+              # permissions
             overwrites = {
                 guild.default_role: discord.PermissionOverwrite(view_channel=False),
                 user: discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True),
