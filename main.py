@@ -69,12 +69,12 @@ async def ticket(ctx):
             if category is None:
                 category = await guild.create_category("🎫 Tickets")
 
-              # μοναδικό όνομα καναλιού
-              base_name = f"ticket-{user.name}".replace(" ", "-").lower()
-              name = base_name
-              i = 1
-              while discord.utils.get(guild.channels, name=name):
-                  name = f"{base_name}-{i}"; 
+            # μοναδικό όνομα καναλιού
+            base_name = f"ticket-{user.name}".replace(" ", "-").lower()
+            name = base_name
+            i = 1
+            while discord.utils.get(guild.channels, name=name):
+                name = f"{base_name}-{i}"; i +=1 
             
               # permissions
             overwrites = {
