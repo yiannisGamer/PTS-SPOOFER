@@ -95,7 +95,12 @@ async def ticket(ctx):
                 description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\n👇If you want the ticket closed, click here",
                 color=EMBED_COLOR
             )
-            embed.set_thumbnail(url=THUMBNAIL_URL)
+            from datetime import timezone, timedelta
+
+            # Προσαρμογή στο UTC+3
+            local_time = interaction.created_at + timedelta(hours=3)
+            current_time = local_time.strftime("%H:%M %d/%m/%Y")
+            embed.set_footer(text=f"{interaction.user.name} | {current_time}", icon_url=interaction.user.display_avatar.url)
 
             # κουμπί διαγραφής
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
