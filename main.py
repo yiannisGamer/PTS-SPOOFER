@@ -92,7 +92,7 @@ async def ticket(ctx):
             # embed που στέλνει μέσα
             embed = discord.Embed(
                 title=f"🎫 Ticket — {self.values[0]}",
-                description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\nIf you want the ticket closed, click here ⛔Delete Ticket",
+                description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\nIf you want the ticket closed, click here ⛔ Delete Ticket",
                 color=EMBED_COLOR
             ) 
             embed.set_thumbnail(url=THUMBNAIL_URL)
