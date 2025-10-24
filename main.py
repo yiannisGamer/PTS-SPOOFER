@@ -94,23 +94,18 @@ async def ticket(ctx):
                 title=f"🎫 Ticket — {self.values[0]}",
                 description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\n👇If you want the ticket closed, click here",
                 color=EMBED_COLOR
-            )            
-            from zoneinfo import ZoneInfo
+            ) 
             import datetime
 
-            # Ελληνική ζώνη ώρας
-            gr_tz = ZoneInfo("Europe/Athens")
-            current_time = datetime.datetime.now(gr_tz)
+           # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
+          current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+          time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
 
-            # 12ωρη μορφή με AM/PM, και αφαιρούμε το αρχικό '0' αν υπάρχει -> "5:00AM"
-            time_str = current_time.strftime("%I:%M%p").lstrip("0")
+          embed.set_footer(
+              text=f"{user.name} | Σήμερα στις {time_str} άνοιξε ticket",
+              icon_url=user.display_avatar.url
+         )
 
-           # Footer με avatar, όνομα και ελληνική ώρα
-           embed.set_footer(
-               text=f"{user.name} | Σήμερα στις {time_str} άνοιξε ticket",
-               icon_url=user.display_avatar.url
-           )
-       
             # κουμπί διαγραφής
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
 
