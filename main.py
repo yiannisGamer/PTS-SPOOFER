@@ -74,7 +74,7 @@ async def ticket(ctx):
 
             # Λεξικό για αντιστοίχιση τύπων σε prefix
             prefixes = {
-                "🛒Welcome to the store, what product do you want to get?: "🛒Welcome to the store, what product do you want to get?",
+                "🛒Welcome to the store, what product do you want to get?": "🛒Welcome to the store, what product do you want to get?",
             }
 
             # Αν δεν υπάρχει τύπος, βάζει "ticket"
