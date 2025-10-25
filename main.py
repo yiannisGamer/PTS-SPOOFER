@@ -135,6 +135,7 @@ async def ticket(ctx):
                     description="Το ticket θα κλείσει σε 10 δευτερόλεπτα.",
                     color=discord.Color.red()
                 )
+                
                 # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
                 current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
                 time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
