@@ -135,15 +135,15 @@ async def ticket(ctx):
                     description="Το ticket θα κλείσει σε 10 δευτερόλεπτα.",
                     color=discord.Color.red()
                 )
+                # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
+                current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
+                time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
+                
                 close_embed.set_footer(
                     text=f"{btn_interaction.user.name}",
                     icon_url=btn_interaction.user.display_avatar.url
                 )
                 
-                # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
-                current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-                time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
-
                 # Παίρνουμε το τελευταίο μήνυμα σωστά (χωρίς flatten)
                 last_message = None
                 async for msg in ticket_channel.history(limit=1):
