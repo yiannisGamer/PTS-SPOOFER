@@ -77,11 +77,6 @@ async def ticket(ctx):
                 "🛒Welcome to the store, what product do you want to get?": "🛒Welcome to the store, what product do you want to get?",
             }
             
-            await interaction.response.send_message(
-            f"Από εσένα άνοιξες ένα {ticket_name} ticket!", 
-            ephemeral=True
-            )
-
             # Αν δεν υπάρχει τύπος, βάζει "ticket"
             prefix = prefixes.get(ticket_type, "📞Support")
             
