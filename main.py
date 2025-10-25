@@ -102,7 +102,7 @@ async def ticket(ctx):
             if category is None:
                 category = await interaction.guild.create_category(name=ticket_name)
 
-            await interaction.guild.create_text_channel(name=name, category=category)
+            ticket_channel = await interaction.guild.create_text_channel(name=name, category=category)
 
               # permissions
             overwrites = {
