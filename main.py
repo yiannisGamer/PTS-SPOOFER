@@ -138,8 +138,10 @@ async def ticket(ctx):
                 # Βάζεις την εικόνα του χρήστη στο thumbnail
                 embed.set_thumbnail(url=user.avatar.url)
                
-                # Προαιρετικά μπορείς να προσθέσεις footer με το username
-                embed.set_footer(text=f"Ticket του χρήστη: {user.name}")
+                embed.set_footer(
+                text=f"{user.name} | Σήμερα στις {time_str}",
+                icon_url=user.display_avatar.url
+                )
 
                 # Στέλνει το embed σε όλους στο κανάλι
                 await btn_interaction.channel.send(embed=embed)
