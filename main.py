@@ -146,6 +146,14 @@ async def ticket(ctx):
                     # Ορίζει ως author το bot (έτσι φαίνεται σα μηνυμα από το bot)
                     embed.set_author(name=bot.user.display_name, icon_url=bot.user.display_avatar.url)
                     
+                    # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
+                    current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
+                    time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM 
+                    
+                    embed.set_footer(
+                        text=f"{user.name} | Σήμερα στις {time_str}",
+                        icon_url=user.display_avatar.url
+                    )
                     # Προαιρετικό footer χωρίς να βάζει το user's avatar εκεί (αν θες μόνο κείμενο)
                     embed.set_footer(text=f"Κλείσιμο σε 10s • Ζήτησε: {user}")
 
