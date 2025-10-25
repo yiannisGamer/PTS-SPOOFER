@@ -142,7 +142,7 @@ async def ticket(ctx):
                 time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
 
                 close_embed.set_footer(
-                    text=f"{btn_interaction.user.name} | Κλείνει στις {time_str}",
+                    text=f"{btn_interaction.user.name} | Σημερα στις {time_str}",
                     icon_url=btn_interaction.user.display_avatar.url        
                 )
 
