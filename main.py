@@ -65,7 +65,7 @@ async def ticket(ctx):
             guild = interaction.guild
 
             # φτιάξε/πάρε category
-            category = discord.utils.get(guild.categories, name="🎫 Tickets")
+            category = discord.utils.get(guild.categories, name="📞Support")
             if category is None:
                 category = await guild.create_category("🎫 Tickets")
 
