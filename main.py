@@ -129,18 +129,21 @@ async def ticket(ctx):
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
             
             async def delete_cb(btn_interaction: discord.Interaction):
-                # Δημιουργούμε embed απάντησης
+                # ✅ Κάνουμε defer για να ΜΗΝ δείχνει "αλληλεπίδραση απέτυχε"
+                await btn_interaction.response.defer(thinking=False)
+
+                # Δημιουργούμε embed
                 close_embed = discord.Embed(
                     title="Saving file",
                     description="Το ticket θα κλείσει σε 10 δευτερόλεπτα.",
                     color=discord.Color.red()
-                )             
+                )
                 close_embed.set_footer(
                     text=f"{btn_interaction.user.name}",
                     icon_url=btn_interaction.user.display_avatar.url
                 )
-                
-                # Παίρνουμε το τελευταίο μήνυμα σωστά (χωρίς flatten)
+
+                # Στέλνουμε το embed απάντηση στο τελευταίο μήνυμα
                 last_message = None
                 async for msg in ticket_channel.history(limit=1):
                     last_message = msg
@@ -153,7 +156,7 @@ async def ticket(ctx):
                 # Περιμένει 10 δευτερόλεπτα και μετά διαγράφει το κανάλι
                 await asyncio.sleep(10)
                 try:
-                    await ticket_channel.delete()
+                   await ticket_channel.delete()
                 except Exception as e:
                     print(f"⚠️ Σφάλμα κατά τη διαγραφή του ticket: {e}")
 
