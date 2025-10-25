@@ -129,7 +129,7 @@ async def ticket(ctx):
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
             
             async def delete_cb(btn_interaction: discord.Interaction):
-               try:
+                try:
                     # Αποδέχεται/αναγνωρίζει αμέσως το interaction ώστε να μην εμφανιστεί "interaction failed"
                     await btn_interaction.response.defer()
 
@@ -160,8 +160,8 @@ async def ticket(ctx):
                     await asyncio.sleep(10)
                     await btn_interaction.channel.delete()
 
-              except Exception as e:
-                  print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
+               except Exception as e:
+                   print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
        
             delete_button.callback = delete_cb
             view = View()
