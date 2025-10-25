@@ -138,9 +138,9 @@ async def ticket(ctx):
                    )
                    await btn_interaction.channel.send(embed=embed)
                    
-                    await asyncio.sleep(10)
+                   await asyncio.sleep(10)
                    
-                    await btn_interaction.channel.delete()
+                   await btn_interaction.channel.delete()
                
                except Exception as e:
                    print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
