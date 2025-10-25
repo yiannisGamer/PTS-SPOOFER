@@ -140,11 +140,17 @@ async def ticket(ctx):
                     icon_url=btn_interaction.user.display_avatar.url
                 )
 
-                # Κάνει reply στο τελευταίο μήνυμα (το embed του ticket)
-                last_message = (await ticket_channel.history(limit=1).flatten())[0]
-                await last_message.reply(embed=close_embed)
+                # Παίρνουμε το τελευταίο μήνυμα σωστά (χωρίς flatten)
+                last_message = None
+                async for msg in ticket_channel.history(limit=1):
+                    last_message = msg
 
-                # Περιμένει 10 δευτερόλεπτα και μετά το σβήνει
+                if last_message:
+                    await last_message.reply(embed=close_embed)
+                else:
+                    await ticket_channel.send(embed=close_embed)
+
+                # Περιμένει 10 δευτερόλεπτα και μετά διαγράφει το κανάλι
                 await asyncio.sleep(10)
                 try:
                     await ticket_channel.delete()
