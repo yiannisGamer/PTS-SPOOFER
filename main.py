@@ -68,7 +68,18 @@ async def ticket(ctx):
             category = discord.utils.get(guild.categories, name="📞Support")
             if category is None:
                 category = await guild.create_category("📞Support")                
-                
+            
+            await interaction.response.send_message(
+                f"Από εσένα άνοιξες ένα {ticket_name} ticket!",
+                ephemeral=True
+            )
+            
+            category = discord.utils.get(interaction.guild.categories, name=🛒Buy A Product)
+            if category is None:
+            category = await interaction.guild.create_category(🛒Buy A Product)
+            
+            ticket_channel = await interaction.guild.create_text_channel(name=name, category=category)
+            
             # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
             ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
 
