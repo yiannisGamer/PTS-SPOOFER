@@ -80,6 +80,14 @@ async def ticket(ctx):
             # Αν δεν υπάρχει τύπος, βάζει "ticket"
             prefix = prefixes.get(ticket_type, "📞Support")
             
+            async def callback(self, interaction: discord.Interaction):
+                ticket_type = self.values[0]
+                ticket_names = {"🛒Buy A Product": "📞Support"}
+                prefixes = {"🛒Buy A Product": "📞Support"}
+             
+            ticket_name = ticket_names.get(ticket_type, "Ticket")
+            prefix = prefixes.get(ticket_type, "ticket")
+            
             # Ασφαλές όνομα χρήστη           
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
             if not safe_name:
@@ -97,14 +105,14 @@ async def ticket(ctx):
                 f"Από εσένα άνοιξες ένα {ticket_name} ticket!",
                 ephemeral=True
             )
-           
+            
             category = discord.utils.get(interaction.guild.categories, name=ticket_name)
             if category is None:
                 category = await interaction.guild.create_category(name=ticket_name)
-
+            
             ticket_channel = await interaction.guild.create_text_channel(name=name, category=category)
 
-              # permissions
+            # permissions
             overwrites = {
                 guild.default_role: discord.PermissionOverwrite(view_channel=False),
                 user: discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True),
