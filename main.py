@@ -129,32 +129,18 @@ async def ticket(ctx):
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
 
             async def delete_cb(btn_interaction: discord.Interaction):
-                embed = discord.Embed(
-                    title="Κλείσιμο Ticket",
-                    description="Αυτό το ticket θα κλείσει σε 10 δευτερόλεπτα.",
-                    color=discord.Color.red()  # Μπορείς να αλλάξεις το χρώμα
-                )
-
-                # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
-                current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-                time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
-
-                embed.set_footer(
-                    text=f"{user.name} | Σήμερα στις {time_str}",
-                    icon_url=user.display_avatar.url
-               )
-
-                # Στέλνει το embed σε όλους στο κανάλι
-                await btn_interaction.channel.send(embed=embed)
-
-                # Περιμένει 10 δευτερόλεπτα
-                await asyncio.sleep(10)
-
-                # Προσπαθεί να διαγράψει το κανάλι
                 try:
-                    await btn_interaction.channel.delete()
-                except Exception:
-                    pass
+                   await btn_interaction.response.defer(ephemeral=True)  # ✅ Στέλνει “προσωρινή” απάντηση ώστε να μη φανεί error
+                   embed = discord.Embed(
+                       title="⏳ Κλείσιμο Ticket",
+                       description="Αυτό το ticket θα διαγραφεί σε **10 δευτερόλεπτα...**",
+                       color=discord.Color.red()
+                   )
+                   await btn_interaction.channel.send(embed=embed)
+                   await asyncio.sleep(10)
+                   await btn_interaction.channel.delete()
+               except Exception as e:
+                   print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
 
             delete_button.callback = delete_cb
             view = View()
