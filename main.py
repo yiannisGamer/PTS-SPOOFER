@@ -92,7 +92,12 @@ async def ticket(ctx):
             while discord.utils.get(guild.channels, name=name):
                 name = f"{base_name}-{i}"
                 i += 1
-
+            
+            await interaction.response.send_message(
+                f"Από εσένα άνοιξες ένα {ticket_name} ticket!",
+                ephemeral=True
+            )
+           
             category = discord.utils.get(interaction.guild.categories, name=ticket_name)
             if category is None:
                 category = await interaction.guild.create_category(name=ticket_name)
