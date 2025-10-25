@@ -153,9 +153,6 @@ async def ticket(ctx):
                     # Ορίζει ως author το bot (έτσι φαίνεται σα μηνυμα από το bot)
                     embed.set_author(name=bot.user.display_name, icon_url=bot.user.display_avatar.url)
                     
-                    # Προαιρετικό footer χωρίς να βάζει το user's avatar εκεί (αν θες μόνο κείμενο)
-                    embed.set_footer(text=f"Κλείσιμο σε 10s • Ζήτησε: {user}")
-
                     # Στέλνει το embed *από το bot* στο κανάλι (όλοι το βλέπουν)
                     await btn_interaction.channel.send(embed=embed, allowed_mentions=discord.AllowedMentions.none())
 
