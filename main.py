@@ -78,7 +78,7 @@ async def ticket(ctx):
             if category is None:
             category = await interaction.guild.create_category(🛒Buy A Product)
             
-            ticket_channel = await interaction.guild.create_text_channel(name=name, category=category)
+            ticket_channel = await interaction.guild.create_text_channel(name=🛒Buy A Product, category=🛒Buy A Product)
             
             # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
             ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
