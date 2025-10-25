@@ -139,7 +139,7 @@ async def ticket(ctx):
                     color=discord.Color.red()
                 )
                 current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-                time_str = current_time.strftime("%H:%M:%S")
+                time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
 
                 close_embed.set_footer(
                     text=f"{btn_interaction.user.name} | Κλείνει στις {time_str}",
