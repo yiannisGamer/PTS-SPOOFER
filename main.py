@@ -92,7 +92,13 @@ async def ticket(ctx):
             while discord.utils.get(guild.channels, name=name):
                 name = f"{base_name}-{i}"
                 i += 1
-            
+
+            category = discord.utils.get(interaction.guild.categories, name=ticket_name)
+            if category is None:
+                category = await interaction.guild.create_category(name=ticket_name)
+
+            await interaction.guild.create_text_channel(name=name, category=category)
+
               # permissions
             overwrites = {
                 guild.default_role: discord.PermissionOverwrite(view_channel=False),
