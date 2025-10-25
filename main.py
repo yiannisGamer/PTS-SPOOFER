@@ -147,8 +147,13 @@ async def ticket(ctx):
                     text=f"{user.name} | Σήμερα στις {time_str}",
                     icon_url=user.display_avatar.url
                     )
+                    
                     # Στέλνει το embed στο κανάλι
-                    await btn_interaction.channel.send(embed=embed)
+                    await btn_interaction.channel.send(
+                        content=f"{btn_interaction.user.mention}",
+                        embed=embed,
+                        allowed_mentions=discord.AllowedMentions.none()
+                   )
 
                     # Περιμένει 10 δευτερόλεπτα
                     await asyncio.sleep(10)
