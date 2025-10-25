@@ -129,7 +129,7 @@ async def ticket(ctx):
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
             
             async def delete_cb(btn_interaction: discord.Interaction):
-               try:
+             try:
                     # Αποδέχεται/αναγνωρίζει αμέσως το interaction ώστε να μην εμφανιστεί "interaction failed"
                     await btn_interaction.response.defer()
 
