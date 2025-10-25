@@ -117,7 +117,7 @@ async def ticket(ctx):
             import datetime
 
             # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
-            current_time = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
+            current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
             time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
 
             embed.set_footer(
