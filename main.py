@@ -139,7 +139,14 @@ async def ticket(ctx):
                         description="Αυτό το ticket θα διαγραφεί σε **10 δευτερόλεπτα...**",
                         color=discord.Color.red()
                     )
-
+                    # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
+                    current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
+                    time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
+                    
+                    embed.set_footer(
+                    text=f"{user.name} | Σήμερα στις {time_str}",
+                    icon_url=user.display_avatar.url
+                    )
                     # Στέλνει το embed στο κανάλι
                     await btn_interaction.channel.send(embed=embed)
 
