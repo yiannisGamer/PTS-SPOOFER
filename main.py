@@ -129,40 +129,28 @@ async def ticket(ctx):
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
             
             async def delete_cb(btn_interaction: discord.Interaction):
+                # Δημιουργούμε embed απάντησης
+                close_embed = discord.Embed(
+                    title="Saving file",
+                    description="Το ticket θα κλείσει σε 10 δευτερόλεπτα.",
+                    color=discord.Color.red()
+                )
+                close_embed.set_footer(
+                    text=f"{btn_interaction.user.name}",
+                    icon_url=btn_interaction.user.display_avatar.url
+                )
+
+                # Κάνει reply στο τελευταίο μήνυμα (το embed του ticket)
+                last_message = (await ticket_channel.history(limit=1).flatten())[0]
+                await last_message.reply(embed=close_embed)
+
+                # Περιμένει 10 δευτερόλεπτα και μετά το σβήνει
+                await asyncio.sleep(10)
                 try:
-                    # Αποδέχεται/αναγνωρίζει αμέσως το interaction ώστε να μην εμφανιστεί "interaction failed"
-                    await btn_interaction.response.defer()
-
-                    # Φτιάχνει embed: το embed "υπογράφεται" από το bot (author = bot),
-                    # και μέσα στο description/fields βάζουμε το username + avatar του χρήστη
-                    user = btn_interaction.user
-
-                    embed = discord.Embed(
-                        title="⏳ Κλείσιμο Ticket",
-                        description=f"Το ticket θα κλείσει σε **10 δευτερόλεπτα**",
-                        color=discord.Color.red()
-                    )
-                    # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
-                    current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-                    time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM 
-
-                    embed.set_footer(
-                        text=f"{user.name} | Σήμερα στις {time_str}",
-                        icon_url=user.display_avatar.url
-                    )
-                    # Ορίζει ως author το bot (έτσι φαίνεται σα μηνυμα από το bot)
-                    embed.set_author(name=bot.user.display_name, icon_url=bot.user.display_avatar.url)
-                    
-                    # Στέλνει το embed *από το bot* στο κανάλι (όλοι το βλέπουν)
-                    await btn_interaction.channel.send(embed=embed, allowed_mentions=discord.AllowedMentions.none())
-
-                    # Περιμένουμε 10s και διαγράφουμε το κανάλι
-                    await asyncio.sleep(10)
-                    await btn_interaction.channel.delete()
-
+                    await ticket_channel.delete()
                 except Exception as e:
-                    print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
-       
+                    print(f"⚠️ Σφάλμα κατά τη διαγραφή του ticket: {e}")
+
             delete_button.callback = delete_cb
             view = View()
             view.add_item(delete_button)
