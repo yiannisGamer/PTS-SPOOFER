@@ -74,16 +74,18 @@ async def ticket(ctx):
 
             # Λεξικό για αντιστοίχιση τύπων σε prefix
             prefixes = {
-                "🛒Welcome to the store, what product do you want to get?": "🛒Welcome to the store, what product do you want to get?",
             }
 
             # Αν δεν υπάρχει τύπος, βάζει "ticket"
             prefix = prefixes.get(ticket_type, "📞Support")
+             
+            # Αν δεν υπάρχει τύπος, βάζει "ticket"
+            prefix = prefixes.get(ticket_type, "🛒Buy A Product")
             
-            # Ασφαλές όνομα χρήστη
+            # Ασφαλές όνομα χρήστη           
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
             if not safe_name:
-               safe_name = f"user{user.id}"
+                safe_name = f"user{user.id}"
 
             # Δημιουργία τελικού ονόματος
             base_name = f"{prefix}-{safe_name}"
