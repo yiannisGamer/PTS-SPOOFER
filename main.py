@@ -134,9 +134,6 @@ async def ticket(ctx):
                     description="Αυτό το ticket θα κλείσει σε 10 δευτερόλεπτα.",
                     color=discord.Color.red()  # Μπορείς να αλλάξεις το χρώμα
                 )
-
-                # Βάζεις την εικόνα του χρήστη στο thumbnail
-                embed.set_thumbnail(url=user.avatar.url)
                
                 embed.set_footer(
                 text=f"{user.name} | Σήμερα στις {time_str}",
