@@ -130,21 +130,27 @@ async def ticket(ctx):
 
             async def delete_cb(btn_interaction: discord.Interaction):
                 try:
-                   await btn_interaction.response.defer(ephemeral=True)  # ✅ Στέλνει “προσωρινή” απάντηση ώστε να μη φανεί error
-                   embed = discord.Embed(
-                       title="⏳ Κλείσιμο Ticket",
-                       description="Αυτό το ticket θα διαγραφεί σε **10 δευτερόλεπτα...**",
-                       color=discord.Color.red()
-                   )
-                
-                   await btn_interaction.channel.send(embed=embed)
-                   
-                   await asyncio.sleep(10)
-                   
-                   await btn_interaction.channel.delete()
-               
-            except Exception as e:
-                print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
+                    # Αποφεύγει το "Αυτή η αλληλεπίδραση απέτυχε"
+                    await btn_interaction.response.defer(thinking=False, ephemeral=True)
+
+                    # Φτιάχνει embed ειδοποίησης
+                    embed = discord.Embed(
+                        title="⏳ Κλείσιμο Ticket",
+                        description="Αυτό το ticket θα διαγραφεί σε **10 δευτερόλεπτα...**",
+                        color=discord.Color.red()
+                    )
+
+                    # Στέλνει το embed στο κανάλι
+                    await btn_interaction.channel.send(embed=embed)
+
+                    # Περιμένει 10 δευτερόλεπτα
+                    await asyncio.sleep(10)
+
+                    # Διαγράφει το κανάλι
+                    await btn_interaction.channel.delete()
+
+               except Exception as e:
+                   print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
 
             delete_button.callback = delete_cb
             view = View()
