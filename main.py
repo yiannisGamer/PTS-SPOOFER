@@ -136,14 +136,15 @@ async def ticket(ctx):
                        description="Αυτό το ticket θα διαγραφεί σε **10 δευτερόλεπτα...**",
                        color=discord.Color.red()
                    )
-                   await btn_interaction.channel.send(embed=embed)
+                
+                await btn_interaction.channel.send(embed=embed)
                    
-                   await asyncio.sleep(10)
+                await asyncio.sleep(10)
                    
-                   await btn_interaction.channel.delete()
+                await btn_interaction.channel.delete()
                
-               except Exception as e:
-                   print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
+            except Exception as e:
+                print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
 
             delete_button.callback = delete_cb
             view = View()
