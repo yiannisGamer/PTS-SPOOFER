@@ -138,9 +138,10 @@ async def ticket(ctx):
                     description="Το ticket θα κλείσει σε 10 δευτερόλεπτα.",
                     color=discord.Color.red()
                 )
-                close_embed.set_footer(
-                    text=f"{btn_interaction.user.name}",
-                    icon_url=btn_interaction.user.display_avatar.url
+                embed.set_footer(
+                text=f"{user.name} | Σήμερα στις {time_str}",
+                icon_url=user.display_avatar.url
+               
                 )
 
                 # Στέλνουμε το embed απάντηση στο τελευταίο μήνυμα
