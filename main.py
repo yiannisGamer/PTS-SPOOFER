@@ -160,8 +160,8 @@ async def ticket(ctx):
                     await asyncio.sleep(10)
                     await btn_interaction.channel.delete()
 
-         except Exception as e:
-             print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
+          except Exception as e:
+              print(f"⚠️ Σφάλμα στο κλείσιμο ticket: {e}")
        
             delete_button.callback = delete_cb
             view = View()
