@@ -139,17 +139,13 @@ async def ticket(ctx):
 
                     embed = discord.Embed(
                         title="⏳ Κλείσιμο Ticket",
-                        description=f"Το ticket του {user.mention} θα κλείσει σε **10 δευτερόλεπτα**.",
+                        description=f"Το ticket θα κλείσει σε **10 δευτερόλεπτα**",
                         color=discord.Color.red()
                     )
 
                     # Ορίζει ως author το bot (έτσι φαίνεται σα μηνυμα από το bot)
                     embed.set_author(name=bot.user.display_name, icon_url=bot.user.display_avatar.url)
-
-                    # Προσθέτει το avatar/όνομα του χρήστη *μέσα* στο embed (όχι σαν footer icon)
-                    embed.add_field(name="Aίτημα από", value=f"{user.display_name}", inline=True)
-                    embed.set_thumbnail(url=user.display_avatar.url)
-
+                    
                     # Προαιρετικό footer χωρίς να βάζει το user's avatar εκεί (αν θες μόνο κείμενο)
                     embed.set_footer(text=f"Κλείσιμο σε 10s • Ζήτησε: {user}")
 
