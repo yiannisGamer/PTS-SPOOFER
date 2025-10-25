@@ -129,12 +129,21 @@ async def ticket(ctx):
             delete_button = Button(label="⛔ Delete Ticket", style=discord.ButtonStyle.red)
 
             async def delete_cb(btn_interaction: discord.Interaction):
-                # allow ephemeral feedback
-                await btn_interaction.response.send_message("⏳ Το ticket θα διαγραφεί σε 10 δευτερόλεπτα...", ephemeral=True)
+                embed = discord.Embed(
+                    title="Κλείσιμο Ticket",
+                    description="Αυτό το ticket θα κλείσει σε 10 δευτερόλεπτα.",
+                    color=discord.Color.red()  # Μπορείς να αλλάξεις το χρώμα
+                )
+
+                # Στέλνει το embed σε όλους στο κανάλι
+                await btn_interaction.channel.send(embed=embed)
+
+                # Περιμένει 10 δευτερόλεπτα
                 await asyncio.sleep(10)
-                # προσπαθούμε να διαγράψουμε
+
+                # Προσπαθεί να διαγράψει το κανάλι
                 try:
-                    await ticket_channel.delete()
+                    await btn_interaction.channel.delete()
                 except Exception:
                     pass
 
