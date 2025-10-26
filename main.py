@@ -51,7 +51,7 @@ async def clear(ctx, amount: int):
 
 import random
 
-# Λίστα με 48 “αστεία memes” – εικόνα + λεζάντα
+# Λίστα με 47 “αστεία memes” – εικόνα + λεζάντα
 fun_memes = [
     {"url": "https://i.imgflip.com/1bij.jpg", "caption": "Όταν προσπαθείς να φας υγιεινά αλλά βλέπεις πίτσα 🍕"},
     {"url": "https://i.imgflip.com/26am.jpg", "caption": "Μέρα Δευτέρα... όλοι καταλαβαίνουμε 😅"},
@@ -62,7 +62,6 @@ fun_memes = [
     {"url": "https://i.imgflip.com/2fm6x.jpg", "caption": "Όταν η ομάδα σου ζητάει κάτι last minute 😤"},
     {"url": "https://i.imgflip.com/3si4.jpg", "caption": "Όταν βρίσκεις επιτέλους το bug που ψάχνεις 🐛✅"},
     {"url": "https://i.imgflip.com/1g8my4.jpg","caption": "Προσπαθώ να καταλάβω τους μαθηματικούς τύπους 🤓"},
-    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Όταν ο σκύλος σου σε κοιτάει με αθώα μάτια 🐶💖"}
     {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Δεν είμαι τεμπέλης… είμαι σε power saving mode 😎"},
     {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μέσα μου ξέρω ότι θα φάω όλο το παγωτό 🍦😈"},
     {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Σκέφτομαι σοβαρά να γίνω νίντζα και να εξαφανιστώ από το σπίτι"},
