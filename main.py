@@ -172,8 +172,6 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
-import asyncio
-
 @bot.command(name='kick')
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, target: str, *, reason: str = None):
@@ -212,7 +210,10 @@ async def kick(ctx, target: str, *, reason: str = None):
                 member = m
                 break
 
-    if not member or member.id == ctx.author.id or member.id == bot.user.id:
+    if not member:
+        return
+
+    if member.id == ctx.author.id or member.id == bot.user.id:
         return
 
     # Kick
@@ -221,20 +222,8 @@ async def kick(ctx, target: str, *, reason: str = None):
     except:
         return
 
-    # DM σαν timeout
-    dm_sent = False
-    try:
-        await member.send("Αν το ξανακάνεις, η επόμενη θα είναι ban!")
-        dm_sent = True
-    except:
-        dm_sent = False
-
-    # Προσωρινή επιβεβαίωση στο κανάλι
-    if dm_sent:
-        confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author} και ειδοποιήθηκε μέσω DM.')
-    else:
-        confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}. Δεν μπόρεσα να στείλω DM.')
-    
+    # Προσωρινή επιβεβαίωση
+    confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}.')
     await asyncio.sleep(3)
     try:
         await confirmation.delete()
