@@ -385,6 +385,7 @@ async def ticket(ctx):
                     color=discord.Color.green()
                 )
                 from datetime import datetime
+                import pytz
                 
                 greece_tz = pytz.timezone("Europe/Athens")
                 current_time = datetime.datetime.now(greece_tz)
