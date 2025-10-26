@@ -129,20 +129,17 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
-    # Βγάζουμε mention μορφή αν υπάρχει
-    maybe_id = ''.join(ch for ch in target if ch.isdigit())
-
     banned_entries = await ctx.guild.bans()
     member_user = None
 
-    # 1) Αν δόθηκε ID
-    if maybe_id:
+    # Προσπαθούμε πρώτα με ID
+    if target.isdigit():
         for entry in banned_entries:
-            if str(entry.user.id) == maybe_id:
+            if str(entry.user.id) == target:
                 member_user = entry.user
                 break
 
-    # 2) Αν όχι, ψάχνουμε username#discriminator
+    # Αν δεν βρέθηκε, δοκιμάζουμε username#discriminator
     if not member_user:
         for entry in banned_entries:
             user = entry.user
@@ -151,7 +148,7 @@ async def unban(ctx, *, target: str):
                 break
 
     if not member_user:
-        # Αν δεν βρέθηκε, μην κάνεις τίποτα
+        await ctx.send("Δεν βρέθηκε banned χρήστης με αυτά τα στοιχεία.", delete_after=5)
         return
 
     # Εκτέλεση unban
