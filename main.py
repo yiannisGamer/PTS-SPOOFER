@@ -49,6 +49,27 @@ async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
     await ctx.send(f"Έσβησα {amount} μηνύματα!", delete_after=5)
 
+import random
+
+# Λίστα με 10 “αστεία memes” – εικόνα + λεζάντα
+fun_memes = [
+    {"url": "https://i.imgflip.com/1bij.jpg", "caption": "Όταν προσπαθείς να φας υγιεινά αλλά βλέπεις πίτσα 🍕"},
+    {"url": "https://i.imgflip.com/26am.jpg", "caption": "Μέρα Δευτέρα... όλοι καταλαβαίνουμε 😅"},
+    {"url": "https://i.imgflip.com/1otk96.jpg", "caption": "Όταν λες ‘μία μικρή ανάπαυση’ και κοιμάσαι 3 ώρες 😴"},
+    {"url": "https://i.imgflip.com/4t0m5.jpg", "caption": "Όταν η καφεΐνη δεν δουλεύει πια ☕😵"},
+    {"url": "https://i.imgflip.com/39t1o.jpg", "caption": "Μαθαίνω κώδικα: Τι σφάλμα είναι αυτό;;; 🤯"},
+    {"url": "https://i.imgflip.com/1h7in3.jpg", "caption": "Όταν λες ‘θα το κάνω αύριο’ και το κάνεις μήνες μετά ⏳"},
+    {"url": "https://i.imgflip.com/2fm6x.jpg", "caption": "Όταν η ομάδα σου ζητάει κάτι last minute 😤"},
+    {"url": "https://i.imgflip.com/3si4.jpg", "caption": "Όταν βρίσκεις επιτέλους το bug που ψάχνεις 🐛✅"},
+    {"url": "https://i.imgflip.com/1g8my4.jpg", "caption": "Προσπαθώ να καταλάβω τους μαθηματικούς τύπους 🤓"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Όταν ο σκύλος σου σε κοιτάει με αθώα μάτια 🐶💖"}
+]
+
+@bot.command()
+async def meme(ctx):
+    item = random.choice(fun_memes)
+    await ctx.send(f"{item['caption']}\n{item['url']}")
+
 # ---------- Ticket command ----------
 @bot.command()
 async def ticket(ctx):
