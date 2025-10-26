@@ -358,7 +358,7 @@ async def ticket(ctx):
 
             # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
             current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-            time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
+            time_str = current_time.strftime("%I:%M %p").lstrip("0")  # δείχνει σωστά 12:00 AM/PM
 
             embed.set_footer(
                 text=f"{user.name} | Today at {time_str}",
@@ -375,11 +375,11 @@ async def ticket(ctx):
                 # Δημιουργούμε embed
                 close_embed = discord.Embed(
                     title="Saving file",
-                    description="⏳The ticket will close in 10 seconds.",
+                    description="The ticket will close in 10 seconds.",
                     color=discord.Color.green()
                 )
                 current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-                time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
+                time_str = current_time.strftime("%I:%M %p").lstrip("0")  # δείχνει σωστά 12:00 AM/PM
 
                 close_embed.set_footer(
                     text=f"{btn_interaction.user.name} | Today at {time_str}",
