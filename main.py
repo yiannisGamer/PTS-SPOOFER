@@ -22,7 +22,6 @@ import discord
 from discord.ext import commands
 from discord.ui import View, Select, Button
 import datetime
-import pytz
 
 # ---------- Intents ----------
 intents = discord.Intents.default()
@@ -356,6 +355,7 @@ async def ticket(ctx):
             embed.set_thumbnail(url=THUMBNAIL_URL)
             
             from datetime import datetime
+            import pytz
 
             # Ζώνη ώρας Ελλάδας
             greece_tz = pytz.timezone("Europe/Athens")
