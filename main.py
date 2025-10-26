@@ -212,10 +212,7 @@ async def kick(ctx, target: str, *, reason: str = None):
                 member = m
                 break
 
-    if not member:
-        return
-
-    if member.id == ctx.author.id or member.id == bot.user.id:
+    if not member or member.id == ctx.author.id or member.id == bot.user.id:
         return
 
     # Kick
@@ -224,14 +221,20 @@ async def kick(ctx, target: str, *, reason: str = None):
     except:
         return
 
-    # Στέλνουμε DM στον χρήστη
+    # DM σαν timeout
+    dm_sent = False
     try:
         await member.send("Αν το ξανακάνεις, η επόμενη θα είναι ban!")
+        dm_sent = True
     except:
-        pass  # Αν ο χρήστης έχει κλειστά DM
+        dm_sent = False
 
     # Προσωρινή επιβεβαίωση στο κανάλι
-    confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}.')
+    if dm_sent:
+        confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author} και ειδοποιήθηκε μέσω DM.')
+    else:
+        confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}. Δεν μπόρεσα να στείλω DM.')
+    
     await asyncio.sleep(3)
     try:
         await confirmation.delete()
