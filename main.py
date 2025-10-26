@@ -239,79 +239,36 @@ async def kick_error(ctx, error):
             pass
         return
 
-@bot.command(name='timeout')
-@commands.has_permissions(moderate_members=True)  # permission για timeout
-async def timeout(ctx, target: str):
-    try:
-        await ctx.message.delete()
-    except:
-        pass
-
-    member = None
-
-    # 1) mention-like
-    if ctx.message.mentions:
-        member = ctx.message.mentions[0]
-
-    # 2) ID
-    if not member:
-        maybe_id = ''.join(ch for ch in target if ch.isdigit())
-        if maybe_id:
-            try:
-                member = await ctx.guild.fetch_member(int(maybe_id))
-            except:
-                member = None
-
-    # 3) exact username / display_name
-    if not member:
-        for m in ctx.guild.members:
-            if m.name == target or m.display_name == target or f"{m.name}#{m.discriminator}" == target:
-                member = m
-                break
-
-    # 4) partial match
-    if not member:
-        target_lower = target.lower()
-        for m in ctx.guild.members:
-            if target_lower in m.name.lower() or target_lower in m.display_name.lower():
-                member = m
-                break
-
-    if not member:
+@bot.command()
+@commands.has_permissions(moderate_members=True)
+async def timeout(ctx, member: discord.Member = None):
+    if member is None:
+        await ctx.send("❌ Πρέπει να αναφέρεις ποιον θέλεις να κάνεις timeout!", delete_after=5)
         return
 
-    if member.id == ctx.author.id or member.id == bot.user.id:
-        return
+    # Χρόνος timeout: 5 λεπτά
+    duration = datetime.timedelta(minutes=5)
 
-    # Ορίζουμε timeout 5 λεπτών
-    timeout_duration = datetime.timedelta(minutes=5)
     try:
-        await member.timeout(timeout_duration, reason=f"Timeout από {ctx.author}")
-    except:
-        return
-
-    # Στέλνουμε DM στον χρήστη
-    try:
-        await member.send("Μην το ξανακάνεις! Έχεις μπει σε timeout για 5 λεπτά.")
-    except:
-        pass  # Αν ο χρήστης έχει κλείσει τα DM
-
-    # Προσωρινή επιβεβαίωση στο κανάλι
-    confirmation = await ctx.send(f'Ο χρήστης {member} μπήκε σε timeout για 5 λεπτά από {ctx.author}.')
-    await asyncio.sleep(3)
-    try:
-        await confirmation.delete()
-    except:
-        pass
-
-@timeout.error
-async def timeout_error(ctx, error):
-    if isinstance(error, commands.MissingPermissions):
+        # Προσπάθεια αποστολής DM
         try:
-            await ctx.message.delete()
+            await member.send("🚫 Έχεις μπει σε 5 λεπτά timeout. Μην το ξανακάνεις!")
         except:
-            pass
-        return
+            pass  # Αν δεν μπορεί να στείλει DM, απλώς προχωράμε
+
+        # Εφαρμόζουμε timeout
+        await member.timeout(duration, reason="Timeout από moderator")
+
+        # Διαγράφουμε το μήνυμα εντολής
+        await ctx.message.delete()
+
+        # Μήνυμα επιβεβαίωσης στο κανάλι
+        msg = await ctx.send(f"🔇 Ο {member.mention} μπήκε σε timeout για 5 λεπτά.", delete_after=3)
+
+    except discord.Forbidden:
+        await ctx.send("❌ Δεν έχω δικαιώματα να κάνω timeout αυτόν τον χρήστη.", delete_after=5)
+    except Exception as e:
+        await ctx.send(f"⚠️ Παρουσιάστηκε σφάλμα: {e}", delete_after=5)
 
 import random
 
