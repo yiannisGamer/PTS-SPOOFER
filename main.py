@@ -124,7 +124,6 @@ async def ban_error(ctx, error):
 @bot.command(name='unban')
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, *, target: str):
-    # Διαγραφή της εντολής αμέσως
     try:
         await ctx.message.delete()
     except:
@@ -132,13 +131,12 @@ async def unban(ctx, *, target: str):
 
     member_user = None
 
-    # Καθαρίζουμε το target από mention μορφή αν υπάρχει (<@!...>)
+    # καθαρίζουμε mention-like (<@123...>)
     maybe_id = ''.join(ch for ch in target if ch.isdigit())
 
-    # Λαμβάνουμε όλα τα banned users
     banned_entries = await ctx.guild.bans()
 
-    # 1) Αν δόθηκε ID (από mention ή απλό) -> ταιριάζουμε με ID
+    # 1) Δοκιμάζουμε ID
     if maybe_id:
         for entry in banned_entries:
             if str(entry.user.id) == maybe_id:
@@ -153,7 +151,7 @@ async def unban(ctx, *, target: str):
                 member_user = user
                 break
 
-    # 3) partial match στο username (case-insensitive)
+    # 3) partial match στο username
     if not member_user:
         target_lower = target.lower()
         for entry in banned_entries:
@@ -162,17 +160,14 @@ async def unban(ctx, *, target: str):
                 member_user = user
                 break
 
-    # Αν δεν βρέθηκε -> τίποτα
     if not member_user:
         return
 
-    # Εκτέλεση unban
     try:
         await ctx.guild.unban(member_user)
     except:
         return
 
-    # Προσωρινή επιβεβαίωση και διαγραφή μετά 3 δευτερόλεπτα
     confirmation = await ctx.send(f'Ο χρήστης {member_user} έγινε unban από {ctx.author}.')
     await asyncio.sleep(3)
     try:
@@ -180,7 +175,6 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
-# Χειρισμός έλλειψης permission
 @unban.error
 async def unban_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
