@@ -354,11 +354,17 @@ async def ticket(ctx):
             ) 
             embed.set_thumbnail(url=THUMBNAIL_URL)
             
-            import datetime
+            from datetime import datetime
+            import pytz
 
-            # Ελληνική ώρα (χωρίς να χρειάζεται pytz ή zoneinfo)
-            current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
-            time_str = current_time.strftime("%I:%M %p").lstrip("0")  # δείχνει σωστά 12:00 AM/PM
+            # Ζώνη ώρας Ελλάδας
+            greece_tz = pytz.timezone("Europe/Athens")
+
+            # Παίρνει την τωρινή ώρα Ελλάδας
+            current_time = datetime.now(greece_tz)
+
+            # Μορφοποιεί σωστά την ώρα (χωρίς 0 μπροστά και με AM/PM)
+            time_str = current_time.strftime("%I:%M %p").lstrip("0")
 
             embed.set_footer(
                 text=f"{user.name} | Today at {time_str}",
