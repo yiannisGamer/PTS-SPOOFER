@@ -129,21 +129,32 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
-    banned_entries = await ctx.guild.bans()
+    # Δημιουργούμε λίστα banned χρηστών
+    banned_entries = [entry async for entry in ctx.guild.bans()]
     member_user = None
 
-    # Προσπαθούμε πρώτα με ID
-    if target.isdigit():
+    # Προσπαθούμε με ID
+    maybe_id = ''.join(ch for ch in target if ch.isdigit())
+    if maybe_id:
         for entry in banned_entries:
-            if str(entry.user.id) == target:
+            if str(entry.user.id) == maybe_id:
                 member_user = entry.user
                 break
 
-    # Αν δεν βρέθηκε, δοκιμάζουμε username#discriminator
+    # Αν όχι, ψάχνουμε username#discriminator
     if not member_user:
         for entry in banned_entries:
             user = entry.user
             if f"{user.name}#{user.discriminator}" == target:
+                member_user = user
+                break
+
+    # Προαιρετικά: partial match στο username
+    if not member_user:
+        target_lower = target.lower()
+        for entry in banned_entries:
+            user = entry.user
+            if target_lower in user.name.lower():
                 member_user = user
                 break
 
@@ -154,7 +165,6 @@ async def unban(ctx, *, target: str):
     # Εκτέλεση unban
     await ctx.guild.unban(member_user)
 
-    # Προσωρινή επιβεβαίωση
     confirmation = await ctx.send(f'Ο χρήστης {member_user} έγινε unban από {ctx.author}.')
     await asyncio.sleep(3)
     try:
