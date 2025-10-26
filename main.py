@@ -51,7 +51,7 @@ async def clear(ctx, amount: int):
 
 import random
 
-# Λίστα με 10 “αστεία memes” – εικόνα + λεζάντα
+# Λίστα με 48 “αστεία memes” – εικόνα + λεζάντα
 fun_memes = [
     {"url": "https://i.imgflip.com/1bij.jpg", "caption": "Όταν προσπαθείς να φας υγιεινά αλλά βλέπεις πίτσα 🍕"},
     {"url": "https://i.imgflip.com/26am.jpg", "caption": "Μέρα Δευτέρα... όλοι καταλαβαίνουμε 😅"},
@@ -63,6 +63,43 @@ fun_memes = [
     {"url": "https://i.imgflip.com/3si4.jpg", "caption": "Όταν βρίσκεις επιτέλους το bug που ψάχνεις 🐛✅"},
     {"url": "https://i.imgflip.com/1g8my4.jpg", "caption": "Προσπαθώ να καταλάβω τους μαθηματικούς τύπους 🤓"},
     {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Όταν ο σκύλος σου σε κοιτάει με αθώα μάτια 🐶💖"}
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Δεν είμαι τεμπέλης… είμαι σε power saving mode 😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μέσα μου ξέρω ότι θα φάω όλο το παγωτό 🍦😈"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Σκέφτομαι σοβαρά να γίνω νίντζα και να εξαφανιστώ από το σπίτι"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Προσοχή: Είμαι σοβαρά αστείος, εγώ προειδοποιώ!"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Σήμερα είμαι 100% καφές, 0% άνθρωπος ☕️😵"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Είμαι σε δίαιτα… από αύριο 😅"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Το μόνο τρέξιμο που κάνω είναι προς το ψυγείο 🏃‍♂️🍕"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μαμά, είπαμε 'θα κοιμηθώ νωρίς'… ψέματα! 😴"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Το wifi έπεσε… η ζωή μου τελείωσε 📶😭"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μου αρέσει να σκέφτομαι ότι είμαι ενήλικας… αλλά όχι πολύ σοβαρά 😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Ο σκύλος μου έχει πιο πολλά followers από μένα 🐶📸"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Καφέ + σοκολάτα = η μόνη λογική μου 💖"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Γυμναστήριο; Σκέφτομαι να πάω… νοερά 🏋️‍♂️😅"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Ο ήλιος με βλέπει και λέει 'καλή τύχη σήμερα' ☀️😂"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μου αρέσει να μιλάω μόνος μου… οι καλύτερες συζητήσεις γίνονται έτσι 😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Σοκολάτα: 1 – Σήμερα: 0 🍫😈"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Οι μαγικές λέξεις: pizza, σοκολάτα, Netflix 🍕🍫📺"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Αγαπώ τον ύπνο… περισσότερο από τους ανθρώπους 😴❤️"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Ο καφές μου με κοιτάει σαν να ξέρει τα πάντα ☕️👀"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Αν ήμουν ήρωας, θα ήμουν 'Lazy Man' 😎🛋️"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Το πρόβλημα δεν είναι η δουλειά… είναι η έλλειψη σοκολάτας 🍫😅"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Δεν είμαι ακατάστατος, απλά δημιουργώ τέχνη χάους 🎨😂"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Ο ήλιος καίει, εγώ λιώνω 🌞🔥"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Γατάκια > Άνθρωποι 😼💖"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Αν ήμουν φαγητό, θα ήμουν παγωτό 🍦😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Το Netflix με καταλαβαίνει καλύτερα από όλους 📺❤️"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Προσοχή! Ακολουθεί επαγγελματίας αναβάτης… στον καναπέ 🛋️😂"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Δεν τεμπελιάζω, απλά απολαμβάνω την τεμπελιά μου 😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Το φαγητό μου με αγαπάει περισσότερο από όλους 🍕💖"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Η ζωή είναι μικρή, φάε την πίτσα 🍕😈"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Καφές: ο μόνος λόγος που ξυπνάω ☕️😵"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Είμαι σοβαρός… μόνο όταν κοιμάμαι 😴😂"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μου αρέσει να σκέφτομαι ότι έχω σχέδιο… αλλά δεν έχω 😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Η σοκολάτα λύνει όλα τα προβλήματα 🍫😎"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Μην ανησυχείς, ο καφές είναι εδώ ☕️💖"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Οι κακές μέρες χρειάζονται καλή σοκολάτα 🍫😌"},
+    {"url": "https://i.imgflip.com/4t0n1.jpg", "caption": "Αν το Netflix ήταν χώρα, θα ήμουν πολίτης 😎📺"},
 ]
 
 @bot.command()
