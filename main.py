@@ -129,60 +129,41 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
-    member_user = None
-
-    # καθαρίζουμε mention-like (<@123...>)
+    # Βγάζουμε mention μορφή αν υπάρχει
     maybe_id = ''.join(ch for ch in target if ch.isdigit())
 
     banned_entries = await ctx.guild.bans()
+    member_user = None
 
-    # 1) Δοκιμάζουμε ID
+    # 1) Αν δόθηκε ID
     if maybe_id:
         for entry in banned_entries:
             if str(entry.user.id) == maybe_id:
                 member_user = entry.user
                 break
 
-    # 2) username#discriminator ή exact username
+    # 2) Αν όχι, ψάχνουμε username#discriminator
     if not member_user:
         for entry in banned_entries:
             user = entry.user
-            if f"{user.name}#{user.discriminator}" == target or user.name == target:
-                member_user = user
-                break
-
-    # 3) partial match στο username
-    if not member_user:
-        target_lower = target.lower()
-        for entry in banned_entries:
-            user = entry.user
-            if target_lower in user.name.lower():
+            if f"{user.name}#{user.discriminator}" == target:
                 member_user = user
                 break
 
     if not member_user:
+        # Αν δεν βρέθηκε, μην κάνεις τίποτα
         return
 
-    try:
-        await ctx.guild.unban(member_user)
-    except:
-        return
+    # Εκτέλεση unban
+    await ctx.guild.unban(member_user)
 
+    # Προσωρινή επιβεβαίωση
     confirmation = await ctx.send(f'Ο χρήστης {member_user} έγινε unban από {ctx.author}.')
     await asyncio.sleep(3)
     try:
         await confirmation.delete()
     except:
         pass
-
-@unban.error
-async def unban_error(ctx, error):
-    if isinstance(error, commands.MissingPermissions):
-        try:
-            await ctx.message.delete()
-        except:
-            pass
-        return
 
 import random
 
