@@ -51,20 +51,60 @@ async def clear(ctx, amount: int):
 
 @bot.command(name='ban')
 @commands.has_permissions(ban_members=True)
-async def ban(ctx, member: discord.Member, *, reason: str = None):
+async def ban(ctx, target: str, *, reason: str = None):
+    # διαγραφή της εντολής αμέσως
     try:
-        await ctx.message.delete()  # διαγραφή του μηνύματος της εντολής
+        await ctx.message.delete()
     except:
         pass
 
+    member = None
+
+    # 1) Αν χρησιμοποιήθηκε mention -> ctx.message.mentions[0]
+    if ctx.message.mentions:
+        member = ctx.message.mentions[0]
+
+    # 2) Αν όχι mention, δοκιμάζουμε αν είναι ID (μόνο digits)
+    if not member:
+        maybe_id = ''.join(ch for ch in target if ch.isdigit())
+        if maybe_id:
+            try:
+                member = await ctx.guild.fetch_member(int(maybe_id))
+            except:
+                member = None
+
+    # 3) Αν ακόμα όχι, δοκιμάζουμε ακριβές όνομα ή nickname
+    if not member:
+        # πρώτα ακριβές match name ή display_name
+        for m in ctx.guild.members:
+            if m.name == target or m.display_name == target or f"{m.name}#{m.discriminator}" == target:
+                member = m
+                break
+
+    # 4) Αν δεν βρέθηκε, δοκιμάζουμε partial (case-insensitive)
+    if not member:
+        target_lower = target.lower()
+        for m in ctx.guild.members:
+            if target_lower in m.name.lower() or target_lower in m.display_name.lower():
+                member = m
+                break
+
+    # Τελικός έλεγχος
+    if not member:
+        # δεν βρέθηκε στόχος -> δεν κάνουμε τίποτα (ή στείλε ephemeral reply αν θέλεις)
+        return
+
+    # Προστασία: μην κάνει ban τον εαυτό του ή το bot
     if member.id == ctx.author.id or member.id == bot.user.id:
         return
 
+    # Εκτέλεση ban
     try:
         await member.ban(reason=reason or f"Banned by {ctx.author}")
     except:
         return
 
+    # προσωρινή επιβεβαίωση και διαγραφή μετά 3s
     confirmation = await ctx.send(f'Από {ctx.author} ο χρήστης {member} έφαγε ban.')
     await asyncio.sleep(3)
     try:
