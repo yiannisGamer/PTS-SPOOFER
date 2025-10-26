@@ -172,6 +172,73 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
+@bot.command(name='kick')
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, target: str, *, reason: str = None):
+    try:
+        await ctx.message.delete()
+    except:
+        pass
+
+    member = None
+
+    # 1) mention-like
+    if ctx.message.mentions:
+        member = ctx.message.mentions[0]
+
+    # 2) ID
+    if not member:
+        maybe_id = ''.join(ch for ch in target if ch.isdigit())
+        if maybe_id:
+            try:
+                member = await ctx.guild.fetch_member(int(maybe_id))
+            except:
+                member = None
+
+    # 3) exact username / display_name
+    if not member:
+        for m in ctx.guild.members:
+            if m.name == target or m.display_name == target or f"{m.name}#{m.discriminator}" == target:
+                member = m
+                break
+
+    # 4) partial match
+    if not member:
+        target_lower = target.lower()
+        for m in ctx.guild.members:
+            if target_lower in m.name.lower() or target_lower in m.display_name.lower():
+                member = m
+                break
+
+    if not member:
+        return
+
+    if member.id == ctx.author.id or member.id == bot.user.id:
+        return
+
+    # Kick
+    try:
+        await member.kick(reason=reason or f"Kicked by {ctx.author}")
+    except:
+        return
+
+    # Προσωρινή επιβεβαίωση
+    confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}.')
+    await asyncio.sleep(3)
+    try:
+        await confirmation.delete()
+    except:
+        pass
+
+@kick.error
+async def kick_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        try:
+            await ctx.message.delete()
+        except:
+            pass
+        return
+
 import random
 
 # Λίστα με 47 “αστεία memes” – εικόνα + λεζάντα
