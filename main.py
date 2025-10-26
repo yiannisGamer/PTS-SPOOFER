@@ -173,80 +173,33 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
-import asyncio
-
-@bot.command(name='kick')
+@bot.command()
 @commands.has_permissions(kick_members=True)
-async def kick(ctx, target: str, *, reason: str = None):
-    try:
-        await ctx.message.delete()
-    except:
-        pass
-
-    member = None
-
-    # 1) mention-like
-    if ctx.message.mentions:
-        member = ctx.message.mentions[0]
-
-    # 2) ID
-    if not member:
-        maybe_id = ''.join(ch for ch in target if ch.isdigit())
-        if maybe_id:
-            try:
-                member = await ctx.guild.fetch_member(int(maybe_id))
-            except:
-                member = None
-
-    # 3) exact username / display_name
-    if not member:
-        for m in ctx.guild.members:
-            if m.name == target or m.display_name == target or f"{m.name}#{m.discriminator}" == target:
-                member = m
-                break
-
-    # 4) partial match
-    if not member:
-        target_lower = target.lower()
-        for m in ctx.guild.members:
-            if target_lower in m.name.lower() or target_lower in m.display_name.lower():
-                member = m
-                break
-
-    if not member:
+async def kick(ctx, member: discord.Member = None, *, reason="Δεν δόθηκε λόγος"):
+    if member is None:
+        await ctx.send("❌ Πρέπει να αναφέρεις ποιον θέλεις να κάνεις kick!", delete_after=5)
         return
 
-    if member.id == ctx.author.id or member.id == bot.user.id:
-        return
+    # Διαγραφή μηνύματος εντολής
+    await ctx.message.delete()
 
-    # Kick
     try:
-        await member.kick(reason=reason or f"Kicked by {ctx.author}")
-    except:
-        return
-
-    # Στέλνουμε DM στον χρήστη
-    try:
-        await member.send("Αν το ξανακάνεις, η επόμενη θα είναι ban!")
-    except:
-        pass  # Αν ο χρήστης έχει κλειστά DM
-
-    # Προσωρινή επιβεβαίωση στο κανάλι
-    confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}.')
-    await asyncio.sleep(3)
-    try:
-        await confirmation.delete()
-    except:
-        pass
-
-@kick.error
-async def kick_error(ctx, error):
-    if isinstance(error, commands.MissingPermissions):
+        # Προσπάθεια αποστολής DM ΠΡΙΝ το kick
         try:
-            await ctx.message.delete()
+            await member.send(f"🚫 Σε έκανε kick ο {ctx.author.name} από τον server **{ctx.guild.name}**.\n📄 Λόγος: {reason}\n⚠️ Αν το ξανακάνεις, η επόμενη θα είναι ban!")
         except:
-            pass
-        return
+            pass  # Αν δεν μπορεί να στείλει DM, απλά συνεχίζει
+
+        # Κάνει kick τον χρήστη
+        await member.kick(reason=reason)
+
+        # Μήνυμα επιβεβαίωσης στο κανάλι
+        msg = await ctx.send(f"👢 Ο {member.mention} έγινε kick από τον server.", delete_after=3)
+
+    except discord.Forbidden:
+        await ctx.send("❌ Δεν έχω δικαίωμα να κάνω kick αυτόν τον χρήστη.", delete_after=5)
+    except Exception as e:
+        await ctx.send(f"⚠️ Παρουσιάστηκε σφάλμα: {e}", delete_after=5)
 
 @bot.command()
 @commands.has_permissions(moderate_members=True)
