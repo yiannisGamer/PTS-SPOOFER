@@ -191,10 +191,10 @@ async def kick(ctx, member: discord.Member = None):
             pass  # Αν δεν μπορεί να στείλει DM, απλά συνεχίζει
 
         # Κάνει kick τον χρήστη
-        await member.kick(reason=reason)
+        await member.kick(reason="Kick από moderator")
 
         # Μήνυμα επιβεβαίωσης στο κανάλι
-        msg = await ctx.send(f" Ο {member.mention} έγινε kick από τον server.", delete_after=3)
+        msg = await ctx.send(f"👢 Ο {member.mention} έγινε kick από τον server.", delete_after=3)
 
     except discord.Forbidden:
         await ctx.send("❌ Δεν έχω δικαίωμα να κάνω kick αυτόν τον χρήστη.", delete_after=5)
