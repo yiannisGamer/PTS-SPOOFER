@@ -384,9 +384,8 @@ async def ticket(ctx):
                     description="The ticket will close in 10 seconds.",
                     color=discord.Color.green()
                 )
-                from datetime import datetime
-                import pytz
-                
+                import datetime
+
                 greece_tz = pytz.timezone("Europe/Athens")
                 current_time = datetime.datetime.now(greece_tz)
                 time_str = current_time.strftime("%I:%M %p").lstrip("0")
