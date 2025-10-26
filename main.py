@@ -375,8 +375,8 @@ async def ticket(ctx):
                 # Δημιουργούμε embed
                 close_embed = discord.Embed(
                     title="Saving file",
-                    description="Το ticket θα κλείσει σε 10 δευτερόλεπτα.",
-                    color=discord.Color.red()
+                    description="⏳The ticket will close in 10 seconds.",
+                    color=discord.Color.green()
                 )
                 current_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)
                 time_str = current_time.strftime("%I:%M%p").lstrip("0")  # π.χ. 5:00AM
