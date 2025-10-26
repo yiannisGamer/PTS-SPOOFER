@@ -355,7 +355,6 @@ async def ticket(ctx):
             embed.set_thumbnail(url=THUMBNAIL_URL)
             
             from datetime import datetime
-            import pytz
 
             # Ζώνη ώρας Ελλάδας
             greece_tz = pytz.timezone("Europe/Athens")
@@ -384,7 +383,6 @@ async def ticket(ctx):
                     description="The ticket will close in 10 seconds.",
                     color=discord.Color.green()
                 )
-                import pytz
                 greece_tz = pytz.timezone("Europe/Athens")
                 current_time = datetime.datetime.now(greece_tz)
                 time_str = current_time.strftime("%I:%M %p").lstrip("0")
