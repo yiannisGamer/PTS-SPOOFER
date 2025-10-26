@@ -239,6 +239,83 @@ async def kick_error(ctx, error):
             pass
         return
 
+import datetime
+import asyncio
+
+@bot.command(name='timeout')
+@commands.has_permissions(moderate_members=True)  # permission για timeout
+async def timeout(ctx, target: str):
+    try:
+        await ctx.message.delete()
+    except:
+        pass
+
+    member = None
+
+    # 1) mention-like
+    if ctx.message.mentions:
+        member = ctx.message.mentions[0]
+
+    # 2) ID
+    if not member:
+        maybe_id = ''.join(ch for ch in target if ch.isdigit())
+        if maybe_id:
+            try:
+                member = await ctx.guild.fetch_member(int(maybe_id))
+            except:
+                member = None
+
+    # 3) exact username / display_name
+    if not member:
+        for m in ctx.guild.members:
+            if m.name == target or m.display_name == target or f"{m.name}#{m.discriminator}" == target:
+                member = m
+                break
+
+    # 4) partial match
+    if not member:
+        target_lower = target.lower()
+        for m in ctx.guild.members:
+            if target_lower in m.name.lower() or target_lower in m.display_name.lower():
+                member = m
+                break
+
+    if not member:
+        return
+
+    if member.id == ctx.author.id or member.id == bot.user.id:
+        return
+
+    # Ορίζουμε timeout 5 λεπτών
+    timeout_duration = datetime.timedelta(minutes=5)
+    try:
+        await member.timeout(timeout_duration, reason=f"Timeout από {ctx.author}")
+    except:
+        return
+
+    # Στέλνουμε DM στον χρήστη
+    try:
+        await member.send("Μην το ξανακάνεις! Έχεις μπει σε timeout για 5 λεπτά.")
+    except:
+        pass  # Αν ο χρήστης έχει κλείσει τα DM
+
+    # Προσωρινή επιβεβαίωση στο κανάλι
+    confirmation = await ctx.send(f'Ο χρήστης {member} μπήκε σε timeout για 5 λεπτά από {ctx.author}.')
+    await asyncio.sleep(3)
+    try:
+        await confirmation.delete()
+    except:
+        pass
+
+@timeout.error
+async def timeout_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        try:
+            await ctx.message.delete()
+        except:
+            pass
+        return
+
 import random
 
 # Λίστα με 47 “αστεία memes” – εικόνα + λεζάντα
