@@ -49,6 +49,38 @@ async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
     await ctx.send(f"Έσβησα {amount} μηνύματα!", delete_after=5)
 
+@bot.command(name='ban')
+@commands.has_permissions(ban_members=True)
+async def ban(ctx, member: discord.Member, *, reason: str = None):
+    try:
+        await ctx.message.delete()  # διαγραφή του μηνύματος της εντολής
+    except:
+        pass
+
+    if member.id == ctx.author.id or member.id == bot.user.id:
+        return
+
+    try:
+        await member.ban(reason=reason or f"Banned by {ctx.author}")
+    except:
+        return
+
+    confirmation = await ctx.send(f'Από {ctx.author} ο χρήστης {member} έφαγε ban.')
+    await asyncio.sleep(3)
+    try:
+        await confirmation.delete()
+    except:
+        pass
+
+@ban.error
+async def ban_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        try:
+            await ctx.message.delete()
+        except:
+            pass
+        return
+
 import random
 
 # Λίστα με 47 “αστεία memes” – εικόνα + λεζάντα
