@@ -186,7 +186,7 @@ async def kick(ctx, member: discord.Member = None):
     try:
         # Προσπάθεια αποστολής DM ΠΡΙΝ το kick
         try:
-            await member.send(f"Σε έκανε kick ο {ctx.author.name} από τον server **{ctx.guild.name}**.\n⚠️ Αν το ξανακάνεις, η επόμενη θα είναι ban!")
+            await member.send(f" Σε έκανε kick ο {ctx.author.name} από τον server **{ctx.guild.name}**.\n⚠️ Αν το ξανακάνεις, η επόμενη θα είναι ban!")
         except:
             pass  # Αν δεν μπορεί να στείλει DM, απλά συνεχίζει
 
@@ -194,7 +194,7 @@ async def kick(ctx, member: discord.Member = None):
         await member.kick(reason=reason)
 
         # Μήνυμα επιβεβαίωσης στο κανάλι
-        msg = await ctx.send(f"👢 Ο {member.mention} έγινε kick από τον server.", delete_after=3)
+        msg = await ctx.send(f" Ο {member.mention} έγινε kick από τον server.", delete_after=3)
 
     except discord.Forbidden:
         await ctx.send("❌ Δεν έχω δικαίωμα να κάνω kick αυτόν τον χρήστη.", delete_after=5)
