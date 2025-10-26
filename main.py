@@ -222,7 +222,13 @@ async def kick(ctx, target: str, *, reason: str = None):
     except:
         return
 
-    # Προσωρινή επιβεβαίωση
+    # Στέλνουμε DM στον χρήστη
+    try:
+        await member.send("Αν το ξανακάνεις, η επόμενη θα είναι ban!")
+    except:
+        pass  # Αν ο χρήστης έχει κλείσει τα DM
+
+    # Προσωρινή επιβεβαίωση στο κανάλι
     confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}.')
     await asyncio.sleep(3)
     try:
@@ -238,9 +244,6 @@ async def kick_error(ctx, error):
         except:
             pass
         return
-
-import datetime
-import asyncio
 
 @bot.command(name='timeout')
 @commands.has_permissions(moderate_members=True)  # permission για timeout
