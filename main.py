@@ -175,7 +175,7 @@ async def unban(ctx, *, target: str):
 
 @bot.command()
 @commands.has_permissions(kick_members=True)
-async def kick(ctx, member: discord.Member = None, *, reason="Δεν δόθηκε λόγος"):
+async def kick(ctx, member: discord.Member = None):
     if member is None:
         await ctx.send("❌ Πρέπει να αναφέρεις ποιον θέλεις να κάνεις kick!", delete_after=5)
         return
@@ -186,7 +186,7 @@ async def kick(ctx, member: discord.Member = None, *, reason="Δεν δόθηκ�
     try:
         # Προσπάθεια αποστολής DM ΠΡΙΝ το kick
         try:
-            await member.send(f"🚫 Σε έκανε kick ο {ctx.author.name} από τον server **{ctx.guild.name}**.\n📄 Λόγος: {reason}\n⚠️ Αν το ξανακάνεις, η επόμενη θα είναι ban!")
+            await member.send(f"Σε έκανε kick ο {ctx.author.name} από τον server **{ctx.guild.name}**.\n⚠️ Αν το ξανακάνεις, η επόμενη θα είναι ban!")
         except:
             pass  # Αν δεν μπορεί να στείλει DM, απλά συνεχίζει
 
