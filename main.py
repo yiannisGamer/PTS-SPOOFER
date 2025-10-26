@@ -172,6 +172,8 @@ async def unban(ctx, *, target: str):
     except:
         pass
 
+import asyncio
+
 @bot.command(name='kick')
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, target: str, *, reason: str = None):
@@ -226,7 +228,7 @@ async def kick(ctx, target: str, *, reason: str = None):
     try:
         await member.send("Αν το ξανακάνεις, η επόμενη θα είναι ban!")
     except:
-        pass  # Αν ο χρήστης έχει κλείσει τα DM
+        pass  # Αν ο χρήστης έχει κλειστά DM
 
     # Προσωρινή επιβεβαίωση στο κανάλι
     confirmation = await ctx.send(f'Ο χρήστης {member} απομακρύνθηκε (kick) από {ctx.author}.')
