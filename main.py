@@ -315,21 +315,15 @@ async def ticket(ctx):
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
-                    f"📞to **Support Ticket** the ticket was created: {ticket_channel.mention}",
-                    ephemeral=True
-                )
+                    f"📞to **Support Ticket** the ticket was created: {ticket_channel.mention}", ephemeral=True)
 
             elif ticket_label == "🛒Buy A Product":
                 await interaction.response.send_message(
-                    f"🛒 to **Buy A Product Ticket** the ticket was created: {ticket_channel.mention}",
-                    ephemeral=True
-                )
+                    f"🛒 to **Buy A Product Ticket** the ticket was created: {ticket_channel.mention}", ephemeral=True)
 
             else:
                 await interaction.response.send_message(
-                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket: {ticket_channel.mention}",
-                    ephemeral=True
-                )
+                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket: {ticket_channel.mention}", ephemeral=True)
 
             # Δημιουργούμε prefix ανάλογα με το label
             if ticket_label == "📞Support":
@@ -473,7 +467,7 @@ async def ticket(ctx):
             view.add_item(delete_button)
 
             await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
-    
+            
     class TicketView(View):
         def __init__(self):
             super().__init__(timeout=None)
