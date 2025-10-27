@@ -303,6 +303,7 @@ async def ticket(ctx):
         async def callback(self, interaction: discord.Interaction):
             user = interaction.user
             guild = interaction.guild
+            
             ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {interaction.user}")
 
             # Παίρνουμε το label που επέλεξε ο χρήστης
