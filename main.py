@@ -309,8 +309,8 @@ async def ticket(ctx):
             category_name = f"📂{ticket_type.capitalize()}"
             category = discord.utils.get(guild.categories, name=category_name)
             if category is None:
-                category = await guild.create_category(category_name)
-                   
+            category = await guild.create_category(category_name)
+       
             # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
             ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
 
