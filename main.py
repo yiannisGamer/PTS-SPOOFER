@@ -308,26 +308,22 @@ async def ticket(ctx):
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
 
-            # Δημιουργούμε το channel prefix και το ασφαλές όνομα
+            # Κάνουμε απλό όνομα (π.χ. "support" ή "owner") για το κανάλι
             channel_prefix = "support" if "support" in ticket_label.lower() else "owner"
+
+            # Δημιουργούμε ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
+            if not safe_name:
+            safe_name = f"user{user.id}"
+
+            # Φτιάχνουμε το όνομα καναλιού
             channel_name = f"{channel_prefix}-{safe_name}"
 
-            # Ελέγχουμε αν υπάρχει ήδη κανάλι με το ίδιο όνομα
+            # Αν υπάρχει ήδη, προσθέτουμε αριθμό στο τέλος
             i = 1
             while discord.utils.get(guild.channels, name=channel_name):
                 channel_name = f"{channel_prefix}-{safe_name}-{i}"
                 i += 1
-
-            # <<< ΕΔΩ ΜΠΑΙΝΕΙ Ο ΚΩΔΙΚΑΣ ΠΟΥ ΔΗΜΙΟΥΡΓΕΙ ΤΟ ΚΑΝΑΛΙ >>>
-            ticket_channel = await guild.create_text_channel(
-                channel_name,
-                category=category,
-                overwrites=overwrites,
-                topic=f"Ticket για {user}"
-            )
-
-            # Στη συνέχεια μπορείς να στείλεις embed ή να προσθέσεις κουμπί διαγραφής
 
             # Παίρνουμε το value που επέλεξε ο χρήστης
             ticket_type = self.values[0]
@@ -340,13 +336,26 @@ async def ticket(ctx):
             category = discord.utils.get(guild.categories, name=category_name)
             if category is None:
                 category = await guild.create_category(category_name)
-                 
+            
+            # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
+            ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
+
+            # Λεξικό για αντιστοίχιση τύπων σε prefix
+            prefixes = {
+                "🛒Welcome to the store, what product do you want to get?": "🛒Welcome to the store, what product do you want to get?",
+            }
+
+            # Αν δεν υπάρχει τύπος, βάζει "ticket"
+            prefix = prefixes.get(ticket_type, "📞Support")
+     
             # Ασφαλές όνομα χρήστη           
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
             if not safe_name:
                 safe_name = f"user{user.id}"
 
             # Δημιουργία τελικού ονόματος
+            base_name = f"{prefix}-{safe_name}"
+            name = base_name
             i = 1
             while discord.utils.get(guild.channels, name=name):
                 name = f"{base_name}-{i}"
