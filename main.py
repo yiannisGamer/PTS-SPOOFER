@@ -468,7 +468,6 @@ async def ticket(ctx):
             view.add_item(delete_button)
             
             await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
-            await interaction.response.send_message(f"✅ the ticket was created: {ticket_channel.mention}", ephemeral=True)
             
     class TicketView(View):
         def __init__(self):
