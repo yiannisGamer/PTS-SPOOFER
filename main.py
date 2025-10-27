@@ -314,7 +314,7 @@ async def ticket(ctx):
             # Δημιουργούμε ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
             if not safe_name:
-            safe_name = f"user{user.id}"
+                safe_name = f"user{user.id}"
 
             # Φτιάχνουμε το όνομα καναλιού
             channel_name = f"{channel_prefix}-{safe_name}"
