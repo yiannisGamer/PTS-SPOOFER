@@ -307,6 +307,25 @@ async def ticket(ctx):
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
+            
+            # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
+            if ticket_label == "📞Support":
+                await interaction.response.send_message(
+                    f"📞 {interaction.user.mention}, άνοιξες ένα **Support Ticket**!\nΗ ομάδα υποστήριξης θα σε βοηθήσει σύντομα 💬",
+                    ephemeral=True
+                )
+
+            elif ticket_label == "🛒Buy A Product":
+                await interaction.response.send_message(
+                    f"🛒 {interaction.user.mention}, άνοιξες ένα **Buy A Product Ticket**!\nΠες μας ποιο προϊόν θέλεις να αγοράσεις 🛍️",
+                    ephemeral=True
+                )
+
+            else:
+                await interaction.response.send_message(
+                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket.",
+                    ephemeral=True
+                )
 
             # Δημιουργούμε prefix ανάλογα με το label
             if ticket_label == "📞Support":
