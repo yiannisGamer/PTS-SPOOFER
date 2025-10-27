@@ -391,7 +391,11 @@ async def ticket(ctx):
                     overwrites[role] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True)
 
             ticket_channel = await guild.create_text_channel(
-                channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {user}"
+                channel_name,
+                category=category,
+                overwrites=overwrites,
+                topic=f"Ticket για {user}"
+            )
 
             # embed που στέλνει μέσα
             embed = discord.Embed(
