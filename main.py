@@ -308,8 +308,8 @@ async def ticket(ctx):
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
 
-            # Κάνουμε απλό όνομα (π.χ. "support" ή "owner") για το κανάλι
-            channel_prefix = "👑 Support" if "👑 Support" in ticket_label.lower() else "🎆 Buy A Product"
+            # Κάνουμε απλό όνομα (π.χ. "📞Support" ή "🛒Buy A Product") για το κανάλι
+            channel_prefix = "📞Support" if "📞Support" in ticket_label.lower() else "🛒Buy A Product"
 
             # Δημιουργούμε ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
