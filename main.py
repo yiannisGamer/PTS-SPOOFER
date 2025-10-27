@@ -313,11 +313,21 @@ async def ticket(ctx):
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
             channel_name = f"{channel_prefix}-{safe_name}"
 
-            # Αν υπάρχει ήδη κανάλι με το ίδιο όνομα, προσθέτουμε αριθμό στο τέλος
+            # Ελέγχουμε αν υπάρχει ήδη κανάλι με το ίδιο όνομα
             i = 1
             while discord.utils.get(guild.channels, name=channel_name):
                 channel_name = f"{channel_prefix}-{safe_name}-{i}"
                 i += 1
+
+            # <<< ΕΔΩ ΜΠΑΙΝΕΙ Ο ΚΩΔΙΚΑΣ ΠΟΥ ΔΗΜΙΟΥΡΓΕΙ ΤΟ ΚΑΝΑΛΙ >>>
+            ticket_channel = await guild.create_text_channel(
+                channel_name,
+                category=category,
+                overwrites=overwrites,
+                topic=f"Ticket για {user}"
+            )
+
+            # Στη συνέχεια μπορείς να στείλεις embed ή να προσθέσεις κουμπί διαγραφής
 
             # Παίρνουμε το value που επέλεξε ο χρήστης
             ticket_type = self.values[0]
