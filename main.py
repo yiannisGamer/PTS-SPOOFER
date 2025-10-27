@@ -303,7 +303,7 @@ async def ticket(ctx):
         async def callback(self, interaction: discord.Interaction):
             user = interaction.user
             guild = interaction.guild
-
+            
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
@@ -337,7 +337,6 @@ async def ticket(ctx):
                 safe_name = f"user{user.id}"
 
             # Δημιουργία τελικού ονόματος
-            base_name = f"{prefix}-{safe_name}"
             name = base_name
             i = 1
             while discord.utils.get(guild.channels, name=name):
