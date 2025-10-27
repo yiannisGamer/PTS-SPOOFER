@@ -307,6 +307,7 @@ async def ticket(ctx):
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
+            
             ticket_channel = await guild.create_text_channel(
                 channel_name,
                 category=category,
