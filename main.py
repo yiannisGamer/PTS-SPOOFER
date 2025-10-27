@@ -300,14 +300,18 @@ async def ticket(ctx):
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
             
-        class TicketSelect(discord.ui.Select):
-            def __init__(self):
-                ...
+        class TicketSelect(Select):
+            async def callback(self, interaction: discord.Interaction):
+                user = interaction.user
+                guild = interaction.guild
 
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
-
+            channel_prefix = "support" if "support" in ticket_label.lower() else "owner"
+            safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
+            channel_name = f"{channel_prefix}-{safe_name}"
+        
             ticket_channel = await guild.create_text_channel(
                 channel_name,
                 category=category,
