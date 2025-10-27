@@ -304,7 +304,17 @@ async def ticket(ctx):
             async def callback(self, interaction: discord.Interaction):
                 user = interaction.user
                 guild = interaction.guild
+                # εδώ μπορείς να βάλεις το await χωρίς error
+                ticket_channel = await guild.create_text_channel(
+                    "support-channel",
+                    topic=f"Ticket για {user}"
+                )
 
+                await interaction.response.send_message(
+                    f"Το ticket σου δημιουργήθηκε: {ticket_channel.mention}",
+                    ephemeral=True
+               )
+        
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
