@@ -308,18 +308,12 @@ async def ticket(ctx):
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
 
-            # Κάνουμε απλό όνομα (π.χ. "support" ή "owner") για το κανάλι
+            # Δημιουργούμε το channel prefix και το ασφαλές όνομα
             channel_prefix = "support" if "support" in ticket_label.lower() else "owner"
-
-            # Δημιουργούμε ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
-            if not safe_name:
-                safe_name = f"user{user.id}"
-
-            # Φτιάχνουμε το όνομα καναλιού
             channel_name = f"{channel_prefix}-{safe_name}"
 
-            # Αν υπάρχει ήδη, προσθέτουμε αριθμό στο τέλος
+            # Αν υπάρχει ήδη κανάλι με το ίδιο όνομα, προσθέτουμε αριθμό στο τέλος
             i = 1
             while discord.utils.get(guild.channels, name=channel_name):
                 channel_name = f"{channel_prefix}-{safe_name}-{i}"
