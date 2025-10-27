@@ -336,17 +336,6 @@ async def ticket(ctx):
             category = discord.utils.get(guild.categories, name=category_name)
             if category is None:
                 category = await guild.create_category(category_name)
-
-            # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
-            ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
-
-            # Λεξικό για αντιστοίχιση τύπων σε prefix
-            prefixes = {
-                "🛒Welcome to the store, what product do you want to get?": "🛒Welcome to the store, what product do you want to get?",
-            }
-            
-            # Αν δεν υπάρχει τύπος, βάζει "ticket"
-            prefix = prefixes.get(ticket_type, "📞Support")
                  
             # Ασφαλές όνομα χρήστη           
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
