@@ -300,34 +300,14 @@ async def ticket(ctx):
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
             
-        class TicketSelect(Select):
-            async def callback(self, interaction: discord.Interaction):
-                user = interaction.user
-                guild = interaction.guild
-                # εδώ μπορείς να βάλεις το await χωρίς error
-                ticket_channel = await guild.create_text_channel(
-                    "support-channel",
-                    topic=f"Ticket για {user}"
-                )
+       async def callback(self, interaction: discord.Interaction):
+           user = interaction.user
+           guild = interaction.guild
 
-                await interaction.response.send_message(
-                    f"Το ticket σου δημιουργήθηκε: {ticket_channel.mention}",
-                    ephemeral=True
-               )
-        
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
-            channel_prefix = "support" if "support" in ticket_label.lower() else "owner"
-            safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
-            channel_name = f"{channel_prefix}-{safe_name}"
-        
-            ticket_channel = await guild.create_text_channel(
-                channel_name,
-                category=category,
-                overwrites=overwrites,
-                topic=f"Ticket για {user}"
-            )
+            
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
@@ -414,7 +394,9 @@ async def ticket(ctx):
                 role = guild.get_role(role_id)
                 if role:
                     overwrites[role] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True)
-            
+                    
+            ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {user}")
+
             # embed που στέλνει μέσα
             embed = discord.Embed(
                 title=f"🎫 Ticket — {self.values[0]}",
