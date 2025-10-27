@@ -311,13 +311,13 @@ async def ticket(ctx):
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
-                    f"📞 {interaction.user.mention}, άνοιξες ένα **Support Ticket**!\nΗ ομάδα υποστήριξης θα σε βοηθήσει σύντομα 💬",
+                    f"📞 **Support Ticket** the ticket was created: {ticket_channel.mention}",
                     ephemeral=True
                 )
 
             elif ticket_label == "🛒Buy A Product":
                 await interaction.response.send_message(
-                    f"🛒 {interaction.user.mention}, άνοιξες ένα **Buy A Product Ticket**!\nΠες μας ποιο προϊόν θέλεις να αγοράσεις 🛍️",
+                    f"🛒 **Buy A Product Ticket** the ticket was created: {ticket_channel.mention}",
                     ephemeral=True
                 )
 
