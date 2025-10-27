@@ -465,8 +465,6 @@ async def ticket(ctx):
             delete_button.callback = delete_cb
             view = View()
             view.add_item(delete_button)
-
-            await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
             
     class TicketView(View):
         def __init__(self):
