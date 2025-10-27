@@ -304,8 +304,6 @@ async def ticket(ctx):
             user = interaction.user
             guild = interaction.guild
             
-            ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {interaction.user}")
-
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
@@ -381,6 +379,8 @@ async def ticket(ctx):
                 name = f"{base_name}-{i}"
                 i += 1
             
+            ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {interaction.user}")
+
             # permissions
             overwrites = {
                 guild.default_role: discord.PermissionOverwrite(view_channel=False),
