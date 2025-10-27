@@ -312,13 +312,11 @@ async def ticket(ctx):
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
                     f"📞to **Support Ticket** the ticket was created: {ticket_channel.mention}",ephemeral=True)
-                    ephemeral=True
                 )
 
             elif ticket_label == "🛒Buy A Product":
                 await interaction.response.send_message(
                     f"🛒 to **Buy A Product Ticket** the ticket was created: {ticket_channel.mention}",ephemeral=True)
-                    ephemeral=True
                 )
 
             else:
