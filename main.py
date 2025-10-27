@@ -307,28 +307,25 @@ async def ticket(ctx):
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
-            ticket_channel = await guild.create_text_channel(
-                channel_name,
-                category=category,
-                overwrites=overwrites,
-                topic=f"Ticket για {user}"
-            )
+            
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
-                    f"📞to **Support Ticket** the ticket was created: {ticket_channel.mention}", ephemeral=True)
-
+                    f"📞to **Support Ticket** the ticket was created  
+                    ephemeral=True
+                )
             elif ticket_label == "🛒Buy A Product":
                 await interaction.response.send_message(
-                    f"🛒 to **Buy A Product Ticket** the ticket was created: {ticket_channel.mention}", ephemeral=True)
+                    f"🛒 to **Buy A Product Ticket** the ticket was created", 
+                    ephemeral=True
+                )   
 
             else:
                 await interaction.response.send_message(
-                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket: {ticket_channel.mention}", ephemeral=True)
-            
-            # Στέλνουμε το μήνυμα στο κανάλι
-            await ticket_channel.send(message_text)
-            
+                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket.",
+                    ephemeral=True
+                )
+                
             # Δημιουργούμε prefix ανάλογα με το label
             if ticket_label == "📞Support":
                 channel_prefix = "📞Support"
@@ -397,6 +394,8 @@ async def ticket(ctx):
                 role = guild.get_role(role_id)
                 if role:
                     overwrites[role] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True)
+            
+            ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {user}")
 
             # embed που στέλνει μέσα
             embed = discord.Embed(
