@@ -310,11 +310,11 @@ async def ticket(ctx):
 
             # Δημιουργούμε prefix ανάλογα με το label
             if ticket_label == "📞Support":
-                channel_prefix = "support"
+                channel_prefix = "📞Support"
             elif ticket_label == "🛒Buy A Product":
-                channel_prefix = "buy-a-product"
+                channel_prefix = "🛒Buy A Product"
             else:
-                channel_prefix = "ticket"
+                channel_prefix = "🎫ticket"
 
             # Δημιουργούμε ασφαλές όνομα χρήστη
             safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
