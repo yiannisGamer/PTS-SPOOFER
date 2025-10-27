@@ -323,7 +323,7 @@ async def ticket(ctx):
 
             else:
                 await interaction.response.send_message(
-                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket.",
+                    f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket: {ticket_channel.mention}",
                     ephemeral=True
                 )
 
