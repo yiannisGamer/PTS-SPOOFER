@@ -300,13 +300,11 @@ async def ticket(ctx):
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
         
-        ticket_channel = await guild.create_text_channel(
-            channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {user}"
-        )
         async def callback(self, interaction: discord.Interaction):
             user = interaction.user
             guild = interaction.guild
-            
+            ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {interaction.user}")
+
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
