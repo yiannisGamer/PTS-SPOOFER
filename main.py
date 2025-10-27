@@ -304,11 +304,13 @@ async def ticket(ctx):
             user = interaction.user
             guild = interaction.guild
 
-            # φτιάξε/πάρε category
-            category = discord.utils.get(guild.categories, name="📞Helps")
+            # Επιλέγουμε την κατηγορία ανάλογα με το ticket type
+            ticket_type = self.values[0]  # παίρνει '🛒Buy A Product' ή '📞Support'
+            category_name = f"📂{ticket_type.capitalize()}"
+            category = discord.utils.get(guild.categories, name=category_name)
             if category is None:
-                category = await guild.create_category("📞Helps")                
-              
+                category = await guild.create_category(category_name)
+                   
             # --- Δημιουργία ονόματος καναλιού ανάλογα με την επιλογή ---
             ticket_type = self.values[0]  # παίρνει την επιλογή από το dropdown (π.χ. "owner", "general", "ban" κλπ)
 
