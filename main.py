@@ -304,26 +304,31 @@ async def ticket(ctx):
             user = interaction.user
             guild = interaction.guild
             
-            # Παίρνουμε το label που επέλεξε ο χρήστης
-            ticket_type = self.values[0]
-            ticket_label = next(o.label for o in self.options if o.value == ticket_type)
+           # Παίρνουμε το label που επέλεξε ο χρήστης
+           ticket_type = self.values[0]
+           ticket_label = next(o.label for o in self.options if o.value == ticket_type)
 
-            # Κάνουμε απλό όνομα (π.χ. "📞Support" ή "🛒Buy A Product") για το κανάλι
-            channel_prefix = "📞Support" if "📞Support" in ticket_label.lower() else "🛒Buy A Product"
+           # Δημιουργούμε prefix ανάλογα με το label
+           if ticket_label == "📞Support":
+               channel_prefix = "support"
+           elif ticket_label == "🛒Buy A Product":
+               channel_prefix = "buy-a-product"
+           else:
+               channel_prefix = "ticket"
 
-            # Δημιουργούμε ασφαλές όνομα χρήστη
-            safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
-            if not safe_name:
-                safe_name = f"user{user.id}"
+           # Δημιουργούμε ασφαλές όνομα χρήστη
+           safe_name = "".join(c for c in user.name if c.isalnum() or c in "-_").lower()
+           if not safe_name:
+               safe_name = f"user{user.id}"
 
-            # Φτιάχνουμε το όνομα καναλιού
-            channel_name = f"{channel_prefix}-{safe_name}"
+           # Φτιάχνουμε το όνομα του καναλιού
+           channel_name = f"{channel_prefix}-{safe_name}"
 
-            # Αν υπάρχει ήδη, προσθέτουμε αριθμό στο τέλος
-            i = 1
-            while discord.utils.get(guild.channels, name=channel_name):
-                channel_name = f"{channel_prefix}-{safe_name}-{i}"
-                i += 1
+           # Αν υπάρχει ήδη, προσθέτουμε αριθμό στο τέλος
+           i = 1
+           while discord.utils.get(guild.channels, name=channel_name):
+               channel_name = f"{channel_prefix}-{safe_name}-{i}"
+               i += 1
 
             # Παίρνουμε το value που επέλεξε ο χρήστης
             ticket_type = self.values[0]
