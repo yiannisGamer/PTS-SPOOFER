@@ -307,7 +307,12 @@ async def ticket(ctx):
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
-            
+            ticket_channel = await guild.create_text_channel(
+                channel_name,
+                category=category,
+                overwrites=overwrites,
+                topic=f"Ticket για {user}"
+            )
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
@@ -320,7 +325,10 @@ async def ticket(ctx):
             else:
                 await interaction.response.send_message(
                     f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket: {ticket_channel.mention}", ephemeral=True)
-
+            
+            # Στέλνουμε το μήνυμα στο κανάλι
+            await ticket_channel.send(message_text)
+            
             # Δημιουργούμε prefix ανάλογα με το label
             if ticket_label == "📞Support":
                 channel_prefix = "📞Support"
@@ -379,8 +387,6 @@ async def ticket(ctx):
                 name = f"{base_name}-{i}"
                 i += 1
             
-            ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {interaction.user}")
-
             # permissions
             overwrites = {
                 guild.default_role: discord.PermissionOverwrite(view_channel=False),
