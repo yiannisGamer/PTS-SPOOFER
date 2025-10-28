@@ -307,7 +307,7 @@ async def sarck(ctx):
         description="ΕΔΩ ΕΙΝΑΙ ΤΟ SPOOFER ΠΡΩΤΑ ΚΑΝΕΤΕ ΚΑΘΑΡΙΣΤΙΚΟ ΚΑΙ ΕΝΑ ΚΑΛΟ  VPN 💯💥\n \n https://cdn.discordapp.com/attachments/1426816304912011359/1428531939073069066/spoofer.exe?ex=68f2d78b&is=68f1860b&hm=3a0dbb00916664dbff0df40eb962a1c0495772ec50fcc71ff9ba6e28b3686d64& \n \n||@everyone||",  # Κείμενο
         color=discord.Color.red()  # Χρώμα (μπορείς να αλλάξεις)
     )
-    embed.set_image("")  # Εικόνα (βάλε link δικό σου)
+    embed.set_image("https://i.imgflip.com/4t0n1.jpg")  # Εικόνα (βάλε link δικό σου)
 
     await ctx.send(embed=embed)
 
