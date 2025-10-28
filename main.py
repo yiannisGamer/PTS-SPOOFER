@@ -53,8 +53,6 @@ async def on_ready():
         activity=discord.Game(name=activity_text)
     )
     
-    embed.set_footer(text="🔵CREATED BY Μίμπος", icon_url=user.display_avatar.url)
-
     print(f"🎮 Activity set: {activity_text}")
 @bot.command()
           
