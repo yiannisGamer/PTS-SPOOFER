@@ -303,7 +303,7 @@ async def meme(ctx):
 @bot.command()
 async def sarck(ctx):
     embed = discord.Embed(
-        title="1157634063088226344 ggg",  # Τίτλος
+        title="<:emoji_1:1289023450953945109>",  # Τίτλος
         description="📢 ΚΑΛΩΣ ΗΡΘΑΤΕ ΣΤΟ VOODOO ROLEPLAY SERVER 💜\n gg \n eimai maggas",  # Κείμενο
         color=discord.Color.magenta()  # Χρώμα (μπορείς να αλλάξεις)
     )
