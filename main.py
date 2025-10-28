@@ -300,9 +300,9 @@ async def ticket(ctx):
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
             
-            async def callback(self, interaction: discord.Interaction):
-                user = interaction.user
-                guild = interaction.guild
+        async def callback(self, interaction: discord.Interaction):
+            user = interaction.user
+            guild = interaction.guild
 
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
