@@ -397,15 +397,6 @@ async def ticket(ctx):
                     
             ticket_channel = await guild.create_text_channel(channel_name, category=category, overwrites=overwrites, topic=f"Ticket για {user}")
 
-            embed = discord.Embed(
-                title="🎫 Επιλογή Ticket",
-                description=(
-                    "```Παρακαλούμε να επιλέξετε το είδος του ticket "
-                    "που θέλετε να ανοίξετε, για την άμεση εξυπηρέτησή σας.```"
-                ),
-                color=0xff0000  # Κόκκινο χρώμα
-        )
-
             # embed που στέλνει μέσα
             embed = discord.Embed(
                 title=f"🎫 Ticket — {self.values[0]}",
