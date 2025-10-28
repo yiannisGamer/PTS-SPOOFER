@@ -307,7 +307,8 @@ async def ticket(ctx):
             # Παίρνουμε το label που επέλεξε ο χρήστης
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
-            await ticket_channel.send(content=f"{user.mention}
+
+            await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
             
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
@@ -467,8 +468,6 @@ async def ticket(ctx):
             delete_button.callback = delete_cb
             view = View()
             view.add_item(delete_button)
-            
-            await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
             
     class TicketView(View):
         def __init__(self):
