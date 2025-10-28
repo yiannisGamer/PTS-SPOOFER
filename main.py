@@ -44,8 +44,6 @@ EMBED_DESCRIPTION = "📥 **please choose the one you would like**"
 async def on_ready():
     print(f"✅ Συνδέθηκα ως {bot.user}")
      
-    embed.set_footer(text="🔵CREATED BY Μίμπος", icon_url=user.display_avatar.url)
-    
     # Παίρνει το κείμενο από Railway env var
     activity_text = os.getenv("BOT_ACTIVITY_TEXT", "Pts On Top")
     
@@ -54,6 +52,8 @@ async def on_ready():
         status=discord.Status.online,
         activity=discord.Game(name=activity_text)
     )
+    
+    embed.set_footer(text="🔵CREATED BY Μίμπος", icon_url=user.display_avatar.url)
 
     print(f"🎮 Activity set: {activity_text}")
 @bot.command()
