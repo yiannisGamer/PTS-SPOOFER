@@ -295,8 +295,8 @@ async def ticket(ctx):
     class TicketSelect(Select):
         def __init__(self):
             options = [
-                discord.SelectOption(label="🛒Buy A Product", description="☝️ If you have a problem with a product, click here", value="🛒Welcome to the store, what product do you want to get?"),
-                discord.SelectOption(label="📞Support", description="☝️ If you have a problem with a product, click here", value="📞Welcome to support, what problem are you having?"),
+                discord.SelectOption(label="🛒Buy A Product", description="**☝️ If you have a problem with a product, click here**", value="**🛒Welcome to the store, what product do you want to get?**"),
+                discord.SelectOption(label="📞Support", description="**☝️ If you have a problem with a product, click here**", value="**📞Welcome to support, what problem are you having?**"),
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
             
@@ -400,7 +400,7 @@ async def ticket(ctx):
             # embed που στέλνει μέσα
             embed = discord.Embed(
                 title=f"🎫 Ticket — {self.values[0]}",
-                description=f"❤️‍🔥welcome to the team❤️‍🔥{user.mention}\n\nwelcome to the team what would you like❤️‍🔥\n\nIf you want the ticket closed, click here ⛔ Delete Ticket",
+                description=f"❤️‍🔥**Welcome to the team**❤️‍🔥{user.mention}\n\n**Welcome to the team what would you like**❤️‍🔥\n\n**If you want the ticket closed, click here ⛔ Delete Ticket**",
                 color=EMBED_COLOR
             ) 
             embed.set_thumbnail(url=THUMBNAIL_URL)
