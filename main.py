@@ -322,7 +322,7 @@ async def ticket(ctx):
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
-                    f"📞**Support Ticket** the ticket was created",  
+                    f"✅ **You opened a Support ticket**",  
                     ephemeral=True
                 )
             elif ticket_label == "🛒Buy A Product":
