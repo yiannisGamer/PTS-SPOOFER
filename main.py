@@ -34,7 +34,6 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 # ---------- Config: βάλε τα δικά σου ----------
 STAFF_ROLES = [1288087153997516913, 1289538235495878659, 1288090189255675944, 1288106262126657586]  # βάλτες εδώ τα role IDs σου
-THUMBNAIL_URL = "https://cdn.wallpapersafari.com/77/21/0QwLjm.jpg"     # άλλαξε με τη δική σου εικόνα
 embed = discord.Embed(
     title="🎫 Επιλογή Ticket",
     description=(
