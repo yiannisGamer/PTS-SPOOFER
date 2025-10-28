@@ -313,7 +313,7 @@ async def ticket(ctx):
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
-                    f"📞to **Support Ticket** the ticket was created {ticket_channel.mention}",  
+                    f"📞to **Support Ticket** the ticket was created",  
                     ephemeral=True
                 )
             elif ticket_label == "🛒Buy A Product":
