@@ -43,11 +43,11 @@ EMBED_DESCRIPTION = "📥 **please choose the one you would like**"
 @bot.event
 async def on_ready():
     print(f"✅ Συνδέθηκα ως {bot.user}")
+     
+    activity_text = "🔵CREATED BY Μίμπος"
     
     # Παίρνει το κείμενο από Railway env var
     activity_text = os.getenv("BOT_ACTIVITY_TEXT", "Pts On Top")
-    
-    activity_text = "🔵CREATED BY Μίμπος"
     
     # Ορίζει την παρουσία του bot (το "Παίζει ...")
     await bot.change_presence(
