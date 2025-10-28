@@ -197,7 +197,7 @@ async def kick(ctx, member: discord.Member = None):
     try:
         # Προσπάθεια αποστολής DM ΠΡΙΝ το kick
         try:
-            await member.send(f" Σε έκανε kick ο {ctx.author.name} από τον server **{ctx.guild.name}**.\n⚠️ Αν το ξανακάνεις, η επόμενη θα είναι ban!")
+            await member.send(f"❌ You were kicked by {ctx.author.name} from the server **{ctx.guild.name}**.\n⚠️ If you do it again, the next one will be a ban!!")
         except:
             pass  # Αν δεν μπορεί να στείλει DM, απλά συνεχίζει
 
@@ -205,7 +205,7 @@ async def kick(ctx, member: discord.Member = None):
         await member.kick(reason="Kick από moderator")
 
         # Μήνυμα επιβεβαίωσης στο κανάλι
-        msg = await ctx.send(f"👢 Ο {member.mention} έγινε kick από τον server.", delete_after=3)
+        msg = await ctx.send(f" Ο {member.mention} έγινε kick από τον server.", delete_after=3)
 
     except discord.Forbidden:
         await ctx.send("❌ Δεν έχω δικαίωμα να κάνω kick αυτόν τον χρήστη.", delete_after=5)
@@ -225,7 +225,7 @@ async def timeout(ctx, member: discord.Member = None):
     try:
         # Προσπάθεια αποστολής DM
         try:
-            await member.send("🚫 Έχεις μπει σε 5 λεπτά timeout. Μην το ξανακάνεις!")
+            await member.send("🚫 **You have been put in a 5-minute timeout. Don't do it again!**")
         except:
             pass  # Αν δεν μπορεί να στείλει DM, απλώς προχωράμε
 
@@ -236,7 +236,7 @@ async def timeout(ctx, member: discord.Member = None):
         await ctx.message.delete()
 
         # Μήνυμα επιβεβαίωσης στο κανάλι
-        msg = await ctx.send(f"🔇 Ο {member.mention} μπήκε σε timeout για 5 λεπτά.", delete_after=3)
+        msg = await ctx.send(f" Ο {member.mention} μπήκε σε timeout για 5 λεπτά.", delete_after=3)
 
     except discord.Forbidden:
         await ctx.send("❌ Δεν έχω δικαιώματα να κάνω timeout αυτόν τον χρήστη.", delete_after=5)
