@@ -53,7 +53,7 @@ async def on_ready():
         activity=discord.Game(name=activity_text)
     )
 
-    print(f"🎮 Activity set: {activity_text}"
+    print(f"🎮 Activity set: {activity_text}")
 @bot.command()
           
 @commands.has_permissions(manage_messages=True)  # Για να μπορεί να σβήνει μηνύματα
