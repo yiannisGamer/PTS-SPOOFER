@@ -322,12 +322,12 @@ async def ticket(ctx):
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
-                    f"📞to **Support Ticket** the ticket was created",  
+                    f"📞**Support Ticket** the ticket was created",  
                     ephemeral=True
                 )
             elif ticket_label == "🛒Buy A Product":
                 await interaction.response.send_message(
-                    f"🛒 to **Buy A Product Ticket** the ticket was created", 
+                    f"", 
                     ephemeral=True
                 )   
 
@@ -479,7 +479,7 @@ async def ticket(ctx):
             view.add_item(delete_button)
             
             await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
-            
+            await interaction.response.send_message(f"✅ the ticket was created: {ticket_channel.mention}", ephemeral=True)
     class TicketView(View):
         def __init__(self):
             super().__init__(timeout=None)
