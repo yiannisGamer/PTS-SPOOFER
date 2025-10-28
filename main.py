@@ -45,7 +45,7 @@ async def on_ready():
     print(f"✅ Συνδέθηκα ως {bot.user}")
     
     # Παίρνει το κείμενο από Railway env var
-    activity_text = os.getenv("BOT_ACTIVITY_TEXT", "Παίζω κάτι 😎")
+    activity_text = os.getenv("BOT_ACTIVITY_TEXT", "Pts On Top")
 
     # Ορίζει την παρουσία του bot (το "Παίζει ...")
     await bot.change_presence(
