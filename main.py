@@ -295,8 +295,8 @@ async def ticket(ctx):
     class TicketSelect(Select):
         def __init__(self):
             options = [
-                discord.SelectOption(label="🛒Buy A Product", description="**☝️ If you have a problem with a product, click here**", value="**🛒Welcome to the store, what product do you want to get?**"),
-                discord.SelectOption(label="📞Support", description="**☝️ If you have a problem with a product, click here**", value="**📞Welcome to support, what problem are you having?**"),
+                discord.SelectOption(label="🛒Buy A Product", description="☝️ **If you have a problem with a product, click here**", value="**🛒Welcome to the store, what product do you want to get?**"),
+                discord.SelectOption(label="📞Support", description="☝️ **If you have a problem with a product, click here**", value="**📞Welcome to support, what problem are you having?**"),
             ]
             super().__init__(placeholder="click here for whatever you want", options=options)
             
@@ -431,8 +431,8 @@ async def ticket(ctx):
 
                 # Δημιουργούμε embed
                 close_embed = discord.Embed(
-                    title="Saving file",
-                    description="The ticket will close in 10 seconds.",
+                    title="**Saving file**",
+                    description="**The ticket will close in 10 seconds.**",
                     color=discord.Color.green()
                 )
                 import datetime
