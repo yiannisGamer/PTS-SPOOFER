@@ -44,7 +44,7 @@ EMBED_DESCRIPTION = "📥 **please choose the one you would like**"
 async def on_ready():
     print(f"✅ Συνδέθηκα ως {bot.user}")
      
-    activity_text = "🔵CREATED BY Μίμπος"
+    embed.set_footer(text="🔵CREATED BY Μίμπος", icon_url=user.display_avatar.url)
     
     # Παίρνει το κείμενο από Railway env var
     activity_text = os.getenv("BOT_ACTIVITY_TEXT", "Pts On Top")
