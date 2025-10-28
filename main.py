@@ -225,7 +225,7 @@ async def timeout(ctx, member: discord.Member = None):
     try:
         # Προσπάθεια αποστολής DM
         try:
-            await member.send("🚫 **You have been put in a 5-minute timeout. Don't do it again!**")
+            await member.send("🚫**You have been put in a 5-minute timeout. Don't do it again!**")
         except:
             pass  # Αν δεν μπορεί να στείλει DM, απλώς προχωράμε
 
