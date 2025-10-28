@@ -326,8 +326,11 @@ async def ticket(ctx):
                     ephemeral=True
                 )
             elif ticket_label == "🛒Buy A Product":
-                await interaction.response.send_message(f"✅ the ticket was created: {ticket_channel.mention}", ephemeral=True)  
-
+                await interaction.response.send_message( {ticket_channel.mention}  
+                    f" **the ticket was created 🛒Buy A Product** ✅",
+                    ephemeral=True
+                )
+                
             else:
                 await interaction.response.send_message(
                     f"🎫 {interaction.user.mention}, άνοιξες ένα γενικό ticket.",
