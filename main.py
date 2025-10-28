@@ -43,8 +43,19 @@ EMBED_DESCRIPTION = "📥 **please choose the one you would like**"
 @bot.event
 async def on_ready():
     print(f"✅ Συνδέθηκα ως {bot.user}")
+    
+    # Παίρνει το κείμενο από Railway env var
+    activity_text = os.getenv("BOT_ACTIVITY_TEXT", "Παίζω κάτι 😎")
 
+    # Ορίζει την παρουσία του bot (το "Παίζει ...")
+    await bot.change_presence(
+        status=discord.Status.online,
+        activity=discord.Game(name=activity_text)
+    )
+
+    print(f"🎮 Activity set: {activity_text}"
 @bot.command()
+          
 @commands.has_permissions(manage_messages=True)  # Για να μπορεί να σβήνει μηνύματα
 async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
