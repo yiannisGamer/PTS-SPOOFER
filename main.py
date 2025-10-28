@@ -399,7 +399,7 @@ async def ticket(ctx):
 
             # embed που στέλνει μέσα
             embed = discord.Embed(
-                title=f"🎫 Ticket — {self.values[0]}",
+                title=f"{self.values[0]}",
                 description=f"❤️‍🔥**Welcome to the team**❤️‍🔥{user.mention}\n\n**Welcome to the team what would you like**❤️‍🔥\n\n**If you want the ticket closed, click here ⛔ Delete Ticket**",
                 color=EMBED_COLOR
             ) 
