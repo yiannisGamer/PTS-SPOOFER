@@ -308,8 +308,6 @@ async def ticket(ctx):
             ticket_type = self.values[0]
             ticket_label = next(o.label for o in self.options if o.value == ticket_type)
 
-            await ticket_channel.send(content=f"{user.mention}", embed=embed, view=view)
-            
             # --- Μήνυμα στο ίδιο κανάλι (όπως στη φωτό) ---
             if ticket_label == "📞Support":
                 await interaction.response.send_message(
