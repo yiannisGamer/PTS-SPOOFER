@@ -55,6 +55,37 @@ async def on_ready():
     
     print(f"🎮 Activity set: {activity_text}")
 @bot.command()
+
+@bot.command()
+async def sarck(ctx):
+    embed = discord.Embed(
+        title="💀 VOODOO ROLEPLAY 💀",  # Τίτλος
+        description=(
+            "👋 Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
+            "🔥 Απόλαυσε το RP με φίλους!\n"
+            "💬 Μπες στο voice, γνώρισε κόσμο και πέρασε καλά!\n\n"
+            "⚡ **Server info:**\n"
+            "• Custom cars 🚗\n"
+            "• Jobs 💼\n"
+            "• Realistic RP 🎭"
+        ),
+        color=discord.Color.magenta()
+    )
+
+    # 🔹 Εικόνα δεξιά (μικρή φωτογραφία)
+    embed.set_thumbnail(url="https://images-ext-1.discordapp.net/external/tRN56-OkGTbhSk8nmgMEdk8ahLNo1Zkb2db3fFwczmg/https/cdn.wallpapersafari.com/77/21/0QwLjm.jpg?format=webp&width=1382&height=864")
+
+    # 🔹 Εικόνα μεγάλη κάτω (αν θες)
+    embed.set_image(url="https://media.discordapp.net/attachments/1288996430383677450/1289343395025784863/Screenshot_20240928_004928_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=cf2ef2b31140a8ee32f572c2ed48f1eec99c429e45ae030a3ef02a124a98fea8&=&format=webp&width=1523&height=864\n
+    https://media.discordapp.net/attachments/1288996430383677450/1289343395323576443/Screenshot_20240928_004922_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=97c2c225a6fe72d247867ae54f80217ab70d9a47cb3aa8d35784b8516214675e&=&format=webp&width=1499&height=864")  # μπορεί να είναι και GIF
+
+    # 🔹 Footer (κάτω μέρος)
+    embed.set_footer(text="🔥 Made by Mimbos 💀")
+
+    # 🔹 Τρέχουσα ώρα
+    embed.timestamp = discord.utils.utcnow()
+
+    await ctx.send(embed=embed)
           
 @commands.has_permissions(manage_messages=True)  # Για να μπορεί να σβήνει μηνύματα
 async def clear(ctx, amount: int):
@@ -375,17 +406,6 @@ fun_memes = [
 async def meme(ctx):
     item = random.choice(fun_memes)
     await ctx.send(f"{item['caption']}\n{item['url']}")
-
-@bot.command()
-async def sarck(ctx):
-    embed = discord.Embed(
-        title="",  
-        description="ΕΔΩ ΕΙΝΑΙ ΤΟ SPOOFER ΠΡΩΤΑ ΚΑΝΕΤΕ ΚΑΘΑΡΙΣΤΙΚΟ ΚΑΙ ΕΝΑ ΚΑΛΟ  VPN 💯💥 \n \n https://cdn.discordapp.com/attachments/1426816304912011359/1428531939073069066/spoofer.exe?ex=68f2d78b&is=68f1860b&hm=3a0dbb00916664dbff0df40eb962a1c0495772ec50fcc71ff9ba6e28b3686d64& \n \n||@everyone||",  # Κείμενο
-        color=discord.Color.red()  # Χρώμα (μπορείς να αλλάξεις)
-    )
-    embed.set_image(url="")  # Εικόνα (βάλε link δικό σου)
-
-    await ctx.send(embed=embed)
 
 # ---------- Ticket command ----------
 @bot.command()
