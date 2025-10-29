@@ -68,7 +68,7 @@ async def sarck(ctx):
             "• Jobs 💼\n"
             "• Realistic RP 🎭"
         ),
-        color=discord.Color.magenta()
+        color=discord.Color.red()
     )
 
     # 🔹 Εικόνα δεξιά (μικρή φωτογραφία)
@@ -77,7 +77,9 @@ async def sarck(ctx):
     # 🔹 Εικόνα μεγάλη κάτω (αν θες)
     embed.set_image(url="https://media.discordapp.net/attachments/1288996430383677450/1289343395025784863/Screenshot_20240928_004928_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=cf2ef2b31140a8ee32f572c2ed48f1eec99c429e45ae030a3ef02a124a98fea8&=&format=webp&width=1523&height=864")  # μπορεί να είναι και GIF
     
-    embed.set_image(url="https://media.discordapp.net/attachments/1288996430383677450/1289343395323576443/Screenshot_20240928_004922_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=97c2c225a6fe72d247867ae54f80217ab70d9a47cb3aa8d35784b8516214675e&=&format=webp&width=1499&height=864")
+    embed2 = discord.Embed(color=discord.Color.red())
+    embed2.set_image(url="https://media.discordapp.net/attachments/1288996430383677450/1289343395025784863/Screenshot_20240928_004928_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=cf2ef2b31140a8ee32f572c2ed48f1eec99c429e45ae030a3ef02a124a98fea8&=&format=webp&width=1523&height=864")
+    await ctx.send(embeds=[embed1, embed2, embed3])
     
     # 🔹 Footer (κάτω μέρος)
     embed.set_footer(text="🔥 Made by Mimbos 💀")
