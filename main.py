@@ -54,7 +54,6 @@ async def on_ready():
     )
     
     print(f"🎮 Activity set: {activity_text}")
-@bot.command()
 
 @bot.command()
 async def sarck(ctx):
