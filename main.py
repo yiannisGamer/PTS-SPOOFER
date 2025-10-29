@@ -280,6 +280,44 @@ async def add(ctx, user_input, *, role_input):
     # 🔹 Διαγράφει την εντολή και το μήνυμα
     await ctx.message.delete(delay=1)
     await confirm_msg.delete(delay=5)
+    
+@bot.command()
+@commands.has_permissions(manage_roles=True)
+async def remove(ctx, user_input, *, role_input):
+    # 🔹 Προσπάθησε να βρει τον χρήστη είτε από mention είτε από ID
+    try:
+        if user_input.isdigit():
+            member = await ctx.guild.fetch_member(int(user_input))
+        else:
+            member = await commands.MemberConverter().convert(ctx, user_input)
+    except:
+        msg = await ctx.send("❌ Δεν βρήκα αυτόν τον χρήστη.")
+        await msg.delete(delay=5)
+        await ctx.message.delete(delay=1)
+        return
+
+    # 🔹 Προσπάθησε να βρει τον ρόλο είτε από ID είτε από όνομα
+    role = None
+    if role_input.isdigit():
+        role = ctx.guild.get_role(int(role_input))
+    else:
+        role = discord.utils.find(lambda r: r.name.lower() == role_input.lower(), ctx.guild.roles)
+
+    if role is None:
+        msg = await ctx.send("❌ Δεν βρήκα ρόλο με αυτό το όνομα ή ID.")
+        await msg.delete(delay=5)
+        await ctx.message.delete(delay=1)
+        return
+
+    # 🔹 Αφαιρεί τον ρόλο
+    await member.remove_roles(role)
+
+    # 🔹 Επιβεβαίωση
+    confirm_msg = await ctx.send(f"✅ Ο ρόλος **{role.name}** αφαιρέθηκε από τον {member.mention}!")
+
+    # 🔹 Διαγράφει την εντολή και το μήνυμα
+    await ctx.message.delete(delay=1)
+    await confirm_msg.delete(delay=5)
 
 import random
 
