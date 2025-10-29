@@ -242,6 +242,41 @@ async def timeout(ctx, member: discord.Member = None):
         await ctx.send("❌ Δεν έχω δικαιώματα να κάνω timeout αυτόν τον χρήστη.", delete_after=5)
     except Exception as e:
         await ctx.send(f"⚠️ Παρουσιάστηκε σφάλμα: {e}", delete_after=5)
+        
+@bot.command()
+@commands.has_permissions(manage_roles=True)
+async def add(ctx, user_input, *, role_name):
+    # Προσπάθησε να βρει τον χρήστη είτε από mention είτε από ID
+    try:
+        # Αν δόθηκε ID
+        if user_input.isdigit():
+            member = await ctx.guild.fetch_member(int(user_input))
+        else:
+            # Αν δόθηκε mention
+            member = await commands.MemberConverter().convert(ctx, user_input)
+    except:
+        msg = await ctx.send("❌ Δεν βρήκα αυτόν τον χρήστη.")
+        await msg.delete(delay=5)
+        await ctx.message.delete(delay=1)
+        return
+
+    # Βρίσκει τον ρόλο με το όνομα
+    role = discord.utils.get(ctx.guild.roles, name=role_name)
+    if role is None:
+        msg = await ctx.send("❌ Δεν βρήκα ρόλο με αυτό το όνομα.")
+        await msg.delete(delay=5)
+        await ctx.message.delete(delay=1)
+        return
+
+    # Δίνει τον ρόλο
+    await member.add_roles(role)
+
+    # Επιβεβαίωση
+    confirm_msg = await ctx.send(f"✅ Ο ρόλος **{role.name}** δόθηκε στον {member.mention}!")
+
+    # Διαγράφει την εντολή και το μήνυμα μετά από λίγα δευτερόλεπτα
+    await ctx.message.delete(delay=1)
+    await confirm_msg.delete(delay=5)
 
 import random
 
