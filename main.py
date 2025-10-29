@@ -79,7 +79,7 @@ async def sarck(ctx):
     
     embed2 = discord.Embed(color=discord.Color.red())
     embed2.set_image(url="https://media.discordapp.net/attachments/1288996430383677450/1289343395025784863/Screenshot_20240928_004928_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=cf2ef2b31140a8ee32f572c2ed48f1eec99c429e45ae030a3ef02a124a98fea8&=&format=webp&width=1523&height=864")
-    await ctx.send(embeds=[embed1, embed2, embed3])
+    await ctx.send(embeds=[embed1, embed2, ])
     
     # 🔹 Footer (κάτω μέρος)
     embed.set_footer(text="🔥 Made by Mimbos 💀")
