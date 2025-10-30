@@ -104,7 +104,7 @@ async def apply(ctx):
     )
 
     # 🔹 Μεγάλη εικόνα κάτω (banner ή GIF)
-    embed.set_image(url="https://web.telegram.org/k/#777000")
+    embed.set_image(url="1030(2).gif")
 
     # 🔹 Κουμπιά (links)
     view = discord.ui.View()
