@@ -99,15 +99,12 @@ async def apply(ctx):
 
     # 🔹 Μικρή εικόνα πάνω αριστερά (λογότυπο)
     embed.set_author(
-        name="Voodoo Roleplay",
+        name="Pts On Top",
         icon_url="https://images-ext-1.discordapp.net/external/tRN56-OkGTbhSk8nmgMEdk8ahLNo1Zkb2db3fFwczmg/https/cdn.wallpapersafari.com/77/21/0QwLjm.jpg?format=webp&width=1382&height=864"  # 🔸 Βάλε εδώ το link του λογοτύπου σου
     )
 
     # 🔹 Μεγάλη εικόνα κάτω (banner ή GIF)
     embed.set_image(url="https://media.discordapp.net/attachments/1288987962259800197/1289326329124356106/Screenshot_20240927_233954_Chrome.jpg?ex=6903cdb7&is=69027c37&hm=a48235472abbe7efe4619274701728a068bbc469995fd75830829f37d650199f&=&format=webp&width=1554&height=864")
-
-    # 🔹 Footer
-    embed.set_footer(text="🔥 Made by Mimbos 💀")
 
     # 🔹 Κουμπιά (links)
     view = discord.ui.View()
