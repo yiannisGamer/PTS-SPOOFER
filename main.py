@@ -78,7 +78,44 @@ async def sarck(ctx):
     embed.set_image(url="https://media.discordapp.net/attachments/1288996430383677450/1289343395025784863/Screenshot_20240928_004928_Chrome.jpg?ex=69028c1c&is=69013a9c&hm=cf2ef2b31140a8ee32f572c2ed48f1eec99c429e45ae030a3ef02a124a98fea8&=&format=webp&width=1523&height=864")  # μπορεί να είναι και GIF
     
     await ctx.send(embed=embed)
-          
+    
+@bot.command()
+async def apply(ctx):
+    # 🔹 Δημιουργία embed
+    embed = discord.Embed(
+        title="💀 VOODOO ROLEPLAY 💀",
+        description=(
+            "👋 Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
+            "Παρακάτω μπορείς να επιλέξεις και να κάνεις αίτηση για το σώμα που θέλεις:\n"
+            "🚔 **Police** – Υπερασπίσου τη δικαιοσύνη\n"
+            "🚑 **Ambulance** – Βοήθησε όσους έχουν ανάγκη\n"
+            "💼 **Lawyer** – Πάλεψε για το δίκιο\n"
+            "💣 **Army** – Προστάτευσε την πόλη\n"
+            "🛠️ **Anticheat** – Κράτα το RP καθαρό\n"
+            "💜 **Staff** – Γίνε μέρος της ομάδας μας!"
+        ),
+        color=discord.Color.purple()
+    )
+
+    # 🔹 Μικρή εικόνα πάνω αριστερά (λογότυπο)
+    embed.set_author(
+        name="Voodoo Roleplay",
+        icon_url="https://images-ext-1.discordapp.net/external/tRN56-OkGTbhSk8nmgMEdk8ahLNo1Zkb2db3fFwczmg/https/cdn.wallpapersafari.com/77/21/0QwLjm.jpg?format=webp&width=1382&height=864"  # 🔸 Βάλε εδώ το link του λογοτύπου σου
+    )
+
+    # 🔹 Μεγάλη εικόνα κάτω (banner ή GIF)
+    embed.set_image(url="https://media.discordapp.net/attachments/1288987962259800197/1289326329124356106/Screenshot_20240927_233954_Chrome.jpg?ex=6903cdb7&is=69027c37&hm=a48235472abbe7efe4619274701728a068bbc469995fd75830829f37d650199f&=&format=webp&width=1554&height=864")
+
+    # 🔹 Footer
+    embed.set_footer(text="🔥 Made by Mimbos 💀")
+
+    # 🔹 Κουμπιά (links)
+    view = discord.ui.View()
+    view.add_item(discord.ui.Button(label="Mod", emoji="✅", url="https://youtu.be/TlapVJofCL4?si=Y9PK-lpPPEMxEOz4"))
+
+    # 🔹 Στέλνει το embed με τα κουμπιά
+    await ctx.send(embed=embed, view=view)
+    
 @commands.has_permissions(manage_messages=True)  # Για να μπορεί να σβήνει μηνύματα
 async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
