@@ -14,7 +14,7 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.lower() == "ping":
-        await message.channel.send("https://discord.gg/NYs47nUCvR")
+        await message.channel.send("https://discord.gg/55F6sHfK")
 # main.py - δουλειά 100% για Railway (commands.Bot + !ticket command + ping)
 import os
 import asyncio
