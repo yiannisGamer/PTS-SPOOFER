@@ -15,7 +15,6 @@ async def on_message(message):
         return
     if message.content.lower() == "ping":
         await message.channel.send("hello")
-        
 # main.py - δουλειά 100% για Railway (commands.Bot + !ticket command + ping)
 import os
 import asyncio
