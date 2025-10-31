@@ -93,7 +93,7 @@ async def apply(ctx):
     # 🔹 Μικρή εικόνα πάνω αριστερά (λογότυπο)
     embed.set_author(
         name="Pts On Top",
-        icon_url="https://images-ext-1.discordapp.net/external/tRN56-OkGTbhSk8nmgMEdk8ahLNo1Zkb2db3fFwczmg/https/cdn.wallpapersafari.com/77/21/0QwLjm.jpg?format=webp&width=1382&height=864"  # 🔸 Βάλε εδώ το link του λογοτύπου σου
+        icon_url="https://media.discordapp.net/attachments/1432624239093092384/1433589942025715855/a_649a20666f8b2fc068485749f726efc6.webp?ex=69053e2c&is=6903ecac&hm=2ae0c7846b316afea4984854dab0cc43acf985b29e4c1e22fbdfa0e2690d75c9&=&animated=true"  # 🔸 Βάλε εδώ το link του λογοτύπου σου
     )
 
     # 🔹 Μεγάλη εικόνα κάτω (banner ή GIF)
