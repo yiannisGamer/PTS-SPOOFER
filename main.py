@@ -117,6 +117,10 @@ async def apply(ctx):
 async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
     await ctx.send(f"Έσβησα {amount} μηνύματα!", delete_after=5)
+    
+@bot.command()
+async def ping(ctx):
+    await ctx.send("hh")
 
 @bot.command(name='ban')
 @commands.has_permissions(ban_members=True)
