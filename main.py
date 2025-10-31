@@ -106,6 +106,7 @@ async def apply(ctx):
     # 🔹 Στέλνει το embed με τα κουμπιά
     await ctx.send(embed=embed, view=view)
     
+@bot.command()
 @commands.has_permissions(manage_messages=True)  # Για να μπορεί να σβήνει μηνύματα
 async def clear(ctx, amount: int):
     await ctx.channel.purge(limit=amount)
