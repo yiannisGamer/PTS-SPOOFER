@@ -79,6 +79,7 @@ async def apply(ctx):
         title="",
         description=(
     "Below you can choose and join one of the **PTS ON TOP** teams to help wherever you wish!!"
+       
         ),
         color=discord.Color.red()
     )
