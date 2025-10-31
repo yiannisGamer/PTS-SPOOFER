@@ -14,7 +14,7 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.lower() == "ping":
-        await message.channel.send("https://github.com/yiannisGamer/PTS-SPOOFER/edit/main/main.py")
+        await message.channel.send("hello")
 # main.py - δουλειά 100% για Railway (commands.Bot + !ticket command + ping)
 import os
 import asyncio
