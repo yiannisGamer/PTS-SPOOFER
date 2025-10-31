@@ -114,7 +114,7 @@ async def clear(ctx, amount: int):
     
 @bot.command()
 async def ping(ctx):
-    await ctx.send("hh")
+    await ctx.send("https://discord.gg/NYs47nUCvR")
 
 @bot.command(name='ban')
 @commands.has_permissions(ban_members=True)
