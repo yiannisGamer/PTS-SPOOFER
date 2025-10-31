@@ -76,18 +76,11 @@ async def sarck(ctx):
 async def apply(ctx):
     # 🔹 Δημιουργία embed
     embed = discord.Embed(
-        title="💀 VOODOO ROLEPLAY 💀",
+        title="",
         description=(
-            "👋 Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
-            "Παρακάτω μπορείς να επιλέξεις και να κάνεις αίτηση για το σώμα που θέλεις:\n"
-            "🚔 **Police** – Υπερασπίσου τη δικαιοσύνη\n"
-            "🚑 **Ambulance** – Βοήθησε όσους έχουν ανάγκη\n"
-            "💼 **Lawyer** – Πάλεψε για το δίκιο\n"
-            "💣 **Army** – Προστάτευσε την πόλη\n"
-            "🛠️ **Anticheat** – Κράτα το RP καθαρό\n"
-            "💜 **Staff** – Γίνε μέρος της ομάδας μας!"
+            "Below you can choose and join one of the **PTS ON TOP** teams to help wherever you wish!!"
         ),
-        color=discord.Color.purple()
+        color=discord.Color.red()
     )
 
     # 🔹 Μικρή εικόνα πάνω αριστερά (λογότυπο)
@@ -97,7 +90,7 @@ async def apply(ctx):
     )
 
     # 🔹 Μεγάλη εικόνα κάτω (banner ή GIF)
-    embed.set_image(url="https://media.discordapp.net/attachments/1431936689408053268/1433311007274438728/kkk.gif?ex=69043a65&is=6902e8e5&hm=4883c1d5ca4e78bdb7f54b5f4e4bcbbf7bf658e6f84f441be8459602ddd37339&=")
+    embed.set_image(url="https://media.discordapp.net/attachments/1431936689408053268/1433430530078015548/1030_22.gif?ex=6904a9b6&is=69035836&hm=03d826dacfa92586d3df435c504c2f75fbe93ff7f5f08bac9e77bba1d027a066&=")
 
     # 🔹 Κουμπιά (links)
     view = discord.ui.View()
