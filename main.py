@@ -53,7 +53,7 @@ async def sarck(ctx):
     embed = discord.Embed(
         title="<a:fireanim:1434037376258150451> VOODOO ROLEPLAY 💀",  # Τίτλος
         description=(
-            "👋 Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
+            "<a:fireanim:1434037376258150451> Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
             "🔥 Απόλαυσε το RP με φίλους!\n"
             "💬 Μπες στο voice, γνώρισε κόσμο και πέρασε καλά!\n\n"
             "⚡ **Server info:**\n"
