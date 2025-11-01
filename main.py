@@ -51,7 +51,7 @@ async def on_ready():
 @bot.command()
 async def sarck(ctx):
     embed = discord.Embed(
-        title="💀 VOODOO ROLEPLAY 💀",  # Τίτλος
+        title="https://cdn.discordapp.com/emojis/997090889233072149.webp?size=44&animated=true VOODOO ROLEPLAY 💀",  # Τίτλος
         description=(
             "👋 Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
             "🔥 Απόλαυσε το RP με φίλους!\n"
@@ -95,7 +95,7 @@ async def apply(ctx):
 
     # 🔹 Κουμπιά (links)
     view = discord.ui.View()
-    view.add_item(discord.ui.Button(label="Mod", emoji="https://images-ext-1.discordapp.net/external/UR9QMpKwjzP41LrduPnJn1wD7po8JB7J4Q6XsBjH4qQ/%3Fsize%3D44%26animated%3Dtrue/https/cdn.discordapp.com/emojis/997090889233072149.webp?animated=true", url="https://forms.gle/UK7n8DQ9PtJ2t8ia8"))
+    view.add_item(discord.ui.Button(label="Mod", emoji=" ✅ ", url="https://forms.gle/UK7n8DQ9PtJ2t8ia8"))
 
     # 🔹 Στέλνει το embed με τα κουμπιά
     await ctx.send(embed=embed, view=view)
