@@ -94,6 +94,8 @@ async def apply(ctx):
     embed.set_image(url="https://media.discordapp.net/attachments/1431936689408053268/1433430530078015548/1030_22.gif?ex=6904a9b6&is=69035836&hm=03d826dacfa92586d3df435c504c2f75fbe93ff7f5f08bac9e77bba1d027a066&=")
 
     # 🔹 Κουμπιά (links)
+    view = discord.ui.View()
+
     from discord import PartialEmoji
 
     emoji = discord.PartialEmoji(name="ptsontop", id=1434037376258150451, animated=True)
