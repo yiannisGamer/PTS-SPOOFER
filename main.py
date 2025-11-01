@@ -95,7 +95,7 @@ async def apply(ctx):
 
     # 🔹 Κουμπιά (links)
     view = discord.ui.View()
-    view.add_item(discord.ui.Button(label="Mod", emoji="https://cdn.discordapp.com/emojis/997090889233072149.webp?size=44&animated=true", url="https://forms.gle/UK7n8DQ9PtJ2t8ia8"))
+    view.add_item(discord.ui.Button(label="Mod", emoji="https://cdn.discordapp.com/emojis/1289023450953945109.webp?size=96", url="https://forms.gle/UK7n8DQ9PtJ2t8ia8"))
 
     # 🔹 Στέλνει το embed με τα κουμπιά
     await ctx.send(embed=embed, view=view)
