@@ -51,7 +51,7 @@ async def on_ready():
 @bot.command()
 async def sarck(ctx):
     embed = discord.Embed(
-        title="https://cdn.discordapp.com/emojis/997090889233072149.webp?size=44&animated=true VOODOO ROLEPLAY 💀",  # Τίτλος
+        title="997090889233072149 VOODOO ROLEPLAY 💀",  # Τίτλος
         description=(
             "👋 Καλωσήρθες στο **Voodoo Roleplay!** 💜\n\n"
             "🔥 Απόλαυσε το RP με φίλους!\n"
